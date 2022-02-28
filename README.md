@@ -71,6 +71,8 @@ The main goal for the site-owner is to make live entertainment more accessible a
 - Bootstrap
 - Google Fonts
 - Font-awsome
+- Django
+
 
 ## Testing
 
@@ -127,7 +129,7 @@ This project was developed using Gitpod, committed to git and pushed to GitHub u
 ### Code:
 
 - https://github.com/PaulFrankling/discover-north-yorks used for README-structure.
-- Code Institute courses for everything
+- In setting up this project I have followed closely the run-through-project "Project Boutique Ado" in the Code Institute courses.
 
 ### Content:
 
