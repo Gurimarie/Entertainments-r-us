@@ -100,6 +100,7 @@ Fix: Did Z to the code because of problem..."A"
 ### Fixed bugs:
 #### Bug 1
 ![Picture of problem]()
+Problem when deplying to Heroku "Error while running '$ python manage.py collectstatic --noinput'. Push rejected, failed to compile Python app." Heroku suggests the error has to do with static assets and directs to article: https://devcenter.heroku.com/articles/django-assets, where entereing a code-snippet into my settings.py-file is suggested as answer to problem.
 
 
 #### Bug 2
