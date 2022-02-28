@@ -1,6 +1,9 @@
-# Entertainments'r'us
+# Entertainments'R'Us
 ## A website where people can find and connect to freelance artists like singers, actors and entertainers in order to hire them for entertainment at celebrations, weddings and other festive occations.
 
+This project is only just begun, and I have used instructions from the Code Institute "Boutique Ado"-project to set it up. This is most evident in main.py, main.css and index.html. I have started to adapt the code to my project, but they are still mainly the same as in that project. 
+
+I was hoping to get at least the first page deployed and working for this assignment deadline, but sadly I have not been able to fix my bug(s) in time, so I have to submit as it is.
 
 ![Picture of different view-port-displays]()
 
@@ -100,8 +103,8 @@ Fix: Did Z to the code because of problem..."A"
 ### Fixed bugs:
 #### Bug 1
 ![Picture of problem]()
-Problem when deplying to Heroku "Error while running '$ python manage.py collectstatic --noinput'. Push rejected, failed to compile Python app." Heroku suggests the error has to do with static assets and directs to article: https://devcenter.heroku.com/articles/django-assets, where entereing a code-snippet into my settings.py-file is suggested as answer to problem.
-
+Problem when deplying to Heroku "Error while running '$ python manage.py collectstatic --noinput'. Push rejected, failed to compile Python app." Heroku suggests the error has to do with static assets and directs to article: https://devcenter.heroku.com/articles/django-assets, where entereing a code-snippet into my settings.py-file is suggested as answer to problem. That fix did not change anything, so I connect directly to Heroku to try to disable the collect-static with "heroku config:set DISABLE_COLLECTSTATIC=1" as suggested by the article "if all else fails". But that just crashed the whole thing... I'll try to return the code for DATABASE in settings.py back to original (local database). Still not working.
+In the log at Heroku I found the error h10, so I searched it and found this thread (https://stackoverflow-com.translate.goog/questions/14322989/first-heroku-deploy-failed-error-code-h10?_x_tr_sl=en&_x_tr_tl=no&_x_tr_hl=no&_x_tr_pto=op,sc) that suggests it may be something wrong with the Procfile. I removed a "space" from the Procfile, as suggested, and now there is still an error in Heroku, but it has changed from "crashed" do "down", and the new error is h14 "No web-processes running". I have worked back and forth with the Procfile to try to get it working, but still no luck, and my hard deadline is today, so I will leave it for now and fix  it before the resubmission.  
 
 #### Bug 2
 ![Picture of problem]()
@@ -114,9 +117,9 @@ Problem when deplying to Heroku "Error while running '$ python manage.py collect
 
 
 ## Deployment
-This project was developed using Gitpod, committed to git and pushed to GitHub using git-extensions in Gitpod.
+This project was developed using Gitpod, committed to git and pushed to GitHub using git-extensions in Gitpod. Attepted deployd throug Heroku, but not yet successful.
 
-### Steps to deploy this page to GitHub Pages from GitHub repository:
+### Steps to deploy this page on Heroku from GitHub repository:
 
 ### Forking the GitHub repository:
 
