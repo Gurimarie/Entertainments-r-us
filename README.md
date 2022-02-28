@@ -8,21 +8,26 @@ Click here to view the website
 
 ## User Experience (UX)
 ### User stories:
-
 There will be three types of users on this website; 
 the customers, the artists and the admins.
 
-### First time customer goals
-A customer-user 
+### First time customer-users goals
+A customer-user wants to explore the artists work in order to find someone they like. If they are looking for something particular, they want to be able to sort the artists by main-category (singer, toastmaster, clown etc) and by sub-categories (like opera, jazz and rock for instance, for singers).
 
-### Returning visitor goals
-.....
+### First time artist-users goals
+Artist-users wants it to be easy to set up a profile and add info, pictures and links to videos on YouTube etc. They want to be hired for jobs with certainty of being paid.
 
-### Frequent user goals
-.....
+### Returning customer-user goals
+A customer-user wants to be able to contact the artist they wish to hire, to assess price and availability. They want to know what feedback the artist has had from previous customers, and perhaps be able to sort artists by that feedback. They want to have a logg of the artists they have looked at before. They want to leave a feedback for artists they have already hired. They want a secure payment-system (the artist should not be paid before they have performed).
+
+### Returning artist-user goals
+Artist-users want a secure payment-system. The payment should be confirmed received by the app before they perform (but not delivered to the artist until the job is done). They want to be able to give feedback about customers who have hired them, and they want only people who have actually hired them to be able to leave feedback about their performance.
+
+### Admin-user goals
+The admin-user wants to update and take care of the page when needed. They will also need to take out "reports" for accounting and analytics-purposes.
 
 ### Site owner goals
-.........
+The main goal for the site-owner is to make live entertainment more accessible and to make it easier for customers to find artists they want to hire, and for freelance-artists to be able to connect with the larger public. Also to make a small profit pr transaction in order to pay for maintenance to keep the site up-to-date, functioning and secure and for other overhead-costs.
 
 ## Design
 
