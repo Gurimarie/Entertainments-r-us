@@ -55,8 +55,8 @@ The main goal for the site-owner is to make live entertainment more accessible a
 
 
 #### Future features:
-- Possible future feature 1 not yet included
-- Possible future feature 1 not yet included
+- Possibility to search directly in subcategories, for instance for a particular song (only see artists who has a video or audio of them doing that song)
+- Possible future feature 2 not yet included
 
 ## Issues overcome
 
