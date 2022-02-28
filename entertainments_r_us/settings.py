@@ -110,7 +110,10 @@ WSGI_APPLICATION = 'entertainments_r_us.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse("postgres://emxfomcggkahkd:b7bfe3f8fbee1a7bec2452bb8f77359760f0a31c4657127e9f452dc8623f8383@ec2-34-242-89-204.eu-west-1.compute.amazonaws.com:5432/d3qi8lo0dv0laq")
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -166,4 +169,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
