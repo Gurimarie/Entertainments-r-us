@@ -11,6 +11,8 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+/* CSS from Boutique Ado-project, Code Institute */
+
 /* from Bulma (to optimize font-awsome-icons) */
 .icon {
     align-items: center;
@@ -77,6 +79,7 @@ body {
         z-index: 1030;
     }
 
+    /* push the body down beneath the main page header */
     .header-container {
         padding-top: 164px;
     }
