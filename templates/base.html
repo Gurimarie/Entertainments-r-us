@@ -45,12 +45,15 @@
   </head>
   <body>
       <header class="container-fluid fixed-top">
+          <!-- Navbar -->
           <div class="row bg-white pt-lg-2 d-none d-lg-flex" id="topnav">
+              <!-- Logo -->
               <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                   <a href="{% url 'home' %}" class="main-link main-logo-link">
                       <h2 class="logo-front text-black my-0"><strong>Entertainments'R'Us!</strong></h2>
                   </a>
               </div>
+              <!-- Search-area -->
               <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <form method="GET" action="">
                     <div class="input-group w-100">
@@ -65,6 +68,7 @@
                     </div>
                 </form>
               </div>
+              <!-- My Account-logo with dropdown-menu -->
               <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
@@ -91,6 +95,7 @@
               </div>
           </div>
       </header>
+      <!-- Display messages, if any-->
       {% if messages %}
           <div class="message-container"></div>
       {% endif %}
