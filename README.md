@@ -71,10 +71,12 @@ The main goal for the site-owner is to make live entertainment more accessible a
 - 
 
 ### Frameworks, libraries and programs:
-- Bootstrap
+- Materialize CSS
 - Google Fonts
 - Font-awsome
 - Django
+- Heroku
+- Postgres database
 
 
 ## Testing
