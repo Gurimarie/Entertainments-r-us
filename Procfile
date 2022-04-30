@@ -1,1 +1,1 @@
-web: python manage.py runserver
+web: gunicorn entertainments_r_us.wsgi:application
