@@ -12,16 +12,32 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
+    <div class="container h-100 overlay">
         <div class="row h-100">
             <div class="col-7 col-md-6 my-auto">
                 {{ performances }}
-                <div class="my-5">
-                    <h4>
-                        <a href="" class="search-artists-button btn btn-lg rounded-0 text-uppercase py-3">Search for artists!</a>
-                    </h4>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col s12 m6 xl4
+            {% for performance in performances %}">
+            <div class="card">
+                <div class="card-image">
+                <img src="images/sample-1.jpg">
+                <span class="card-title">{{ performances.performance_name}}</span>
+                </div>
+                <div class="card-content">
+                <p>{{ performances.performance_description}}</p>
+                </div>
+                <div class="card-action">
+                <a href="#">This is a link</a>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
