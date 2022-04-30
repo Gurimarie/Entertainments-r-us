@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Category(models.Model):
+    
+    class Meta:
+        verbose_name_plural = 'Categories'
+        
     category_name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -9,6 +13,10 @@ class Category(models.Model):
 
 
 class ArtistType(models.Model):
+    
+    class Meta:
+        verbose_name_plural = 'ArtistTypes'
+        
     artist_type_name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -16,6 +24,10 @@ class ArtistType(models.Model):
 
 
 class Performances(models.Model):
+    
+    class Meta:
+        verbose_name_plural = 'Performances'
+        
     artist_id = models.ForeignKey('Artists', null=True, on_delete=models.SET_NULL)
     performance_title = models.CharField(max_length=254)
     performance_description = models.TextField(null=True, blank=True)
@@ -34,6 +46,10 @@ class Performances(models.Model):
 
 
 class Artists(models.Model):
+    
+    class Meta:
+        verbose_name_plural = 'Artists'
+        
     artist_name = models.CharField(max_length=254)
     artist_description = models.TextField(null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
