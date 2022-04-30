@@ -45,7 +45,6 @@
                 <a href="" class="dropdown-item">Other</a>
             </div>
         </li>
-        {% if request.user.is_authenticated %}
             <!-- Users favourites -->
             <li class="nav-item">
                 <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="favourites-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,6 +57,5 @@
                     Previously Viewed
                 </a>
             </li>
-        {% endif %}
     </ul>
 </div>
