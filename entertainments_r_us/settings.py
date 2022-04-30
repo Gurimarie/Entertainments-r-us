@@ -30,7 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'https://entertainments-r-us.herokuapp.com/', 
-    'localhost'
+    'localhost',
+    'entertainments-r-us.herokuapp.com',
 ]
 
 
