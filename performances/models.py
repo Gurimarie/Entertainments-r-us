@@ -29,7 +29,7 @@ class Performances(models.Model):
         verbose_name_plural = 'Performances'
         
     artist_id = models.ForeignKey('Artists', null=True, on_delete=models.SET_NULL)
-    performance_title = models.CharField(max_length=254)
+    performance_title = models.CharField(max_length=254, null=False, blank=False)
     performance_description = models.TextField(null=True, blank=True)
     composer = models.CharField(max_length=300, null=True, blank=True)
     video_url = models.URLField(max_length=1024, null=True, blank=True)
