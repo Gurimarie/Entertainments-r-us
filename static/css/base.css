@@ -11,6 +11,13 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+.login-container {
+    padding: 5000;
+    margin-top: 30vh;
+    height: 100vh;
+    background-color: white;
+}
+
 /* CSS from Boutique Ado-project, Code Institute */
 
 /* from Bulma (to optimize font-awsome-icons) */
@@ -58,6 +65,16 @@ body {
 
 .border-black {
     border: 1px solid black !important;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    z-index: -1;
 }
 
 /* -------------------------------- Media Queries */
