@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Products
+from .models import Product
 
 # Register your models here.
 
@@ -8,8 +8,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'product_name',
         'product_description',
-        'Procfile',
+        'price',
     )
 
 
-admin.site.register(Products)
+admin.site.register(Product)

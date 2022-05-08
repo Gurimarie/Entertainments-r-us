@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, ArtistType, Performances, Artists
+from .models import Category, ArtistType, Performance, Artist
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -14,7 +14,7 @@ class ArtistTypeAdmin(admin.ModelAdmin):
     )
 
 
-class PerformancesAdmin(admin.ModelAdmin):
+class PerformanceAdmin(admin.ModelAdmin):
     list_display = (
         'artist_id',
         'performance_title',
@@ -25,7 +25,7 @@ class PerformancesAdmin(admin.ModelAdmin):
     )
 
 
-class ArtistsAdmin(admin.ModelAdmin):
+class ArtistAdmin(admin.ModelAdmin):
     list_display = (
         'artist_name',
         'artist_description',
@@ -37,5 +37,5 @@ class ArtistsAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(ArtistType)
-admin.site.register(Performances)
-admin.site.register(Artists)
+admin.site.register(Performance)
+admin.site.register(Artist)

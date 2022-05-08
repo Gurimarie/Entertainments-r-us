@@ -1,6 +1,6 @@
 """ Docstring """
 from django.shortcuts import render
-from .models import Products
+from .models import Product
 
 # Create your views here.
 
@@ -8,7 +8,7 @@ from .models import Products
 def all_products(request):
     """ A view to return the all_products-page, + sorting and searching """
 
-    products = Products.objects.all()
+    products = Product.objects.all()
 
     context = {
         'products': products,

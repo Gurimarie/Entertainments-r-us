@@ -1,14 +1,14 @@
 """ Docstring """
 from django.shortcuts import render
-from .models import Performances
+from .models import Performance
 
 # Create your views here.
 
 
 def all_performances(request):
-    """ A view to return the all_performances, including sorting and searching """
+    """ A view to return the all_performances, incl. sorting and searching"""
 
-    performances = Performances.objects.all()
+    performances = Performance.objects.all()
 
     context = {
         'performances': performances,
