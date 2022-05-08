@@ -124,6 +124,12 @@ This project was developed using Gitpod, committed to git and pushed to GitHub u
 ### Steps to deploy this page on Heroku from GitHub repository:
 
 ### Forking the GitHub repository:
+Go to the project-page in Github https://github.com/Gurimarie/Entertainments-r-us/tree/main and click on the fork-symbol in the top-right corner of the page.
+![Picture of fork-symbol]()
+On GitHub.com, navigate to your fork, open it, and click the Code-button. 
+![Picture of code-button]()
+Choose your preferred way of cloning the repository (HTTPS, SSH or Github CLI), and then open Git Bash. Change the current working directory to the location where you want the cloned directory.
+Type git clone, and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME: "$ git clone https://github.com/YOUR-USERNAME/Entertainments-r-us". Press Enter. Your local clone will be created.
 
 ### Making a local clone:
 
