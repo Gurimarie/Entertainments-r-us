@@ -92,9 +92,15 @@
                         </div>
                     </li>
                     <li class="list-inline-item">
-                        <a href="" class="text-black nav-link font-weight-bold">
+                        <a href="" class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
                             <div class="text-center"><i class="fas fa-shopping-bag fa-lg"></i></div>
-                            <p class="my-0">Shopping-bag</p>
+                            <p class="my-0">
+                                {% if grand_total %}
+                                    ${{ grand_total|floatformat:2 }}
+                                {% else %}
+                                    Shopping-bag
+                                {% endif %}
+                            </p>
                         </a>
                     </li>
                 </ul>
