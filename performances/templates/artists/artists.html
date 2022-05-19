@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!-- White background -->
+    <div class="container h-100 overlay"></div>
+    <div class="container-fluid">
+        <!-- Page-title -->
+        <div class="row h-100">
+            <div class="col-7 col-md-6 my-auto">
+                <h2 class="logo-font">Artists</h2>
+                <hr class="w-50 mb-1">
+            </div>
+        </div>
+        <!-- Display-area -->
+        <div class="row">
+            <div class="col s12 m6 xl4 artist-container offset-1">
+                <div class="row mt-1 mb-2"></div>
+                <div class="row">
+                    {% for artist in artists %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                            <div class="card h-100 border-2">
+                                <!-- Image-section -->
+                                {% if artist.image_url %}
+                                <a href="">
+                                    <img class="card-img-top img-fluid" src="{{ artist.image_url }}" alt="{{ artist.artist_name }}">
+                                </a>
+                                {% else %}
+                                <a href="">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ artist.artist_name }}">
+                                </a>
+                                {% endif %}
+                                <!-- Name-section -->
+                                <div class="card-body pb-0">
+                                    <p class="lead mb-0 font-weight-bold">{{ artist.artist_name}}</p>
+                                </div>
+                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="mb-0 text-left">{{ artist.artist_description}}</p>
+                                            {% if artist.rating %}
+                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ artist.rating }} / 10 (+ how many?)</small>
+                                            {% else %}
+                                                <small class="text-muted">No rating</small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Link to artist-page -->
+                                <div class="card-action">
+                                    <a href="#">Go to artist-page</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
