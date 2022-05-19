@@ -1,4 +1,4 @@
-""" Docstring """
+""" views for products-app  """
 from django.shortcuts import render
 from .models import Product
 
@@ -13,6 +13,5 @@ def all_products(request):
     context = {
         'products': products,
     }
-    
-    return render(request, 'products/products.html', context)
 
+    return render(request, 'products/products.html', context)
