@@ -1,3 +1,4 @@
+""" admin-file for products """
 from django.contrib import admin
 from .models import Product
 
@@ -5,6 +6,7 @@ from .models import Product
 
 
 class ProductAdmin(admin.ModelAdmin):
+    """ list what fields to show in the admin """
     list_display = (
         'product_name',
         'product_description',
@@ -12,4 +14,4 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(Product)
+admin.site.register(Product, ProductAdmin)
