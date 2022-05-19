@@ -60,6 +60,7 @@ class Artist(models.Model):
         'Category', null=True, on_delete=models.SET_NULL)
     artist_type = models.ForeignKey(
         'ArtistType', null=True, on_delete=models.SET_NULL)
+    artist_rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         return self.artist_name
