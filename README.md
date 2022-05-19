@@ -109,9 +109,15 @@ Problem when deplying to Heroku "Error while running '$ python manage.py collect
 In the log at Heroku I found the error h10, so I searched it and found this thread (https://stackoverflow-com.translate.goog/questions/14322989/first-heroku-deploy-failed-error-code-h10?_x_tr_sl=en&_x_tr_tl=no&_x_tr_hl=no&_x_tr_pto=op,sc) that suggests it may be something wrong with the Procfile. I removed a "space" from the Procfile, as suggested, and now there is still an error in Heroku, but it has changed from "crashed" do "down", and the new error is h14 "No web-processes running". I have worked back and forth with the Procfile to try to get it working, but still no luck, and my hard deadline is today, so I will leave it for now and fix  it before the resubmission.  
 
 #### Bug 2
+Problem missing fields in artist-admin and performance-admin. Artist name and several other fields are added in the artist-class, but does not show up in the django-admin.
+![Picture of problem](static/readme_pictures/Artist_admin_missing_fields1.JPG)
+![Picture of problem](static/readme_pictures/Artist_admin_missing_fields2.JPG)
+![Picture of problem](static/readme_pictures/Artist_admin_missing_fields3.JPG)
+The problem turned out to be some missing migrations that did not go through because of missing info in required fields. After temporary adding "default='MISSING'" to the required fields (artist_name, performance_name and artist_id), the migrations went through, and the correct fields are showing in the admin. The default-value has been removed again, so that input is required on new entries.
+![Picture fixed](static/readme_pictures/Artist_admin_missing_fields4.JPG)
+
+#### Bug 3
 ![Picture of problem]()
-
-
 
 
 ### Unfixed bugs:
@@ -125,9 +131,9 @@ This project was developed using Gitpod, committed to git and pushed to GitHub u
 
 ### Forking the GitHub repository:
 Go to the project-page in Github https://github.com/Gurimarie/Entertainments-r-us/tree/main and click on the fork-symbol in the top-right corner of the page.
-![Picture of fork-symbol]()
+![Picture of fork-symbol](static/readme_pictures/Fork1_Fork_symbol.JPG)
 On GitHub.com, navigate to your fork, open it, and click the Code-button. 
-![Picture of code-button]()
+![Picture of code-button](static/readme_pictures/Fork2_Code_button.JPG)
 Choose your preferred way of cloning the repository (HTTPS, SSH or Github CLI), and then open Git Bash. Change the current working directory to the location where you want the cloned directory.
 Type git clone, and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME: "$ git clone https://github.com/YOUR-USERNAME/Entertainments-r-us". Press Enter. Your local clone will be created.
 
