@@ -47,7 +47,7 @@
             </div>
             <!-- Link to product-page -->
             <div class="card-action">
-                <a href="{{ url 'products' }}">Buy a performance</a>
+                <a href="{% url 'artist_products' pk=artist.id %}">Buy a performance</a>
             </div>
         </div>
 

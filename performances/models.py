@@ -1,3 +1,4 @@
+""" Models for app performances, incl. artists and products """
 from django.db import models
 
 
@@ -60,13 +61,28 @@ class Artist(models.Model):
         'Category', null=True, on_delete=models.SET_NULL)
     artist_type = models.ForeignKey(
         'ArtistType', null=True, on_delete=models.SET_NULL)
-    artist_rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    artist_rating = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
-        return self.artist_name
+        return self.pk
 
     def get_artist_name(self):
         return self.artist_name
 
     def get_artist_description(self):
         return self.artist_description
+
+
+class Product(models.Model):
+    """ plural name to show in the admin """
+    class Meta:
+        verbose_name_plural = 'Products'
+
+    product_name = models.CharField(max_length=200)
+    artist_id = models.ForeignKey(
+        'Artist', on_delete=models.CASCADE, default="0")
+    product_description = models.CharField(
+        max_length=500, null=True, blank=True)
+    price = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
