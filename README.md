@@ -62,7 +62,8 @@ The main goal for the site-owner is to make live entertainment more accessible a
 - Possible future feature 2 not yet included
 
 ## Issues overcome
-
+### Challenge with link from "all performances"-page to "artist-page"
+There is a difficulty retreiving the django-artist.id at the all performances-page in order to link to the individual artist-page, because the performances-class only had the artist_id-filed, and not the actual artist-id. The artist-page-view takes primary key artist.id (an integer) as input, but when retrieving the artist_id from "all performances"-page, it comes up as Artist: Artist object (6), instead of as 6. Whith sting-method on Artist-class "return self.artist_name" it comes up as the artist_name ex. Lucia Popp. Neither option works in the url and view for artist-page. The issue is not overcome yet, but will (hopefully) be solved eventually.
 
 ## Technology used
 ### Programming languages:
