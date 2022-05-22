@@ -22,6 +22,19 @@
                  <hr class="w-50 mb-1">
              </div>
          </div>
+         <!-- Links to other pages -->
+         <div class="col">
+            <div class="row">
+                <div class="card-action">
+                    <a href="{% url 'artist_page1' pk=artist.id %}">Back to artist-page</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card-action">
+                    <a href="{% url 'artists' %}">Back to all artists</a>
+                </div>
+            </div>
+        </div>
          <!-- Display-area -->
          <div class="row">
              <div class="col s12 m6 xl4 artist-container offset-1">

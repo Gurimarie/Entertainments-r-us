@@ -43,6 +43,18 @@ def artist_page(request, pk):
     return render(request, 'artists/artist_page.html', context)
 
 
+def artist_details(request, pk):
+    """ A view to return the chosen artists detail-page """
+
+    artist = get_object_or_404(Artist, pk=pk)
+
+    context = {
+        'artist': artist,
+    }
+
+    return render(request, 'artists/artist_details.html', context)
+
+
 def artist_products(request, pk):
     """ A view to return all products for chosen artist """
 
@@ -54,4 +66,4 @@ def artist_products(request, pk):
         'products': products,
     }
 
-    return render(request, 'products/artist_products.html', context)
+    return render(request, 'artists/artist_products.html', context)

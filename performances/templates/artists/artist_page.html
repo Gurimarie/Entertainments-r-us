@@ -21,11 +21,11 @@
                 <!-- Artist-image -->
                 <div class="image-container my-5">
                     {% if artist.image_url %}
-                        <a href="{{ artist.image_url }}" target="_blank">
+                        <a href="{% url 'artist_details' pk=artist.id %}">
                             <img class="card-img-top img-fluid" src="{{ artist.image_url }}" alt="{{ artist.artist_name }}">
                         </a>
                     {% else %}
-                        <a href="">
+                        <a href="{% url 'artist_details' pk=artist.id %}">
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ artist.artist_name }}">
                         </a>
                     {% endif %}
@@ -34,7 +34,7 @@
                 <div class="card-footer bg-white pt-0 border-0 text-left">
                     <div class="row">
                         <div class="col">
-                            <p class="mb-0 text-left">{{ artist.artist_description }}</p>
+                            <p class="mb-0 text-left">{{ artist.artist_description_short }}</p>
                             <p class="mb-0 text-left">Category: {{ artist.category }}</p>
                             {% if artist.rating %}
                                 <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ artist.rating }} / 10 (+ how many?)</small>
@@ -45,9 +45,18 @@
                     </div>
                 </div>
             </div>
-            <!-- Link to product-page -->
-            <div class="card-action">
-                <a href="{% url 'artist_products' pk=artist.id %}">Buy a performance</a>
+            <!-- Links to other pages -->
+            <div class="col">
+                <div class="row">
+                    <div class="card-action">
+                        <a href="{% url 'artist_products' pk=artist.id %}">Buy a performance from {{ artist.artist_name }}</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card-action">
+                        <a href="{% url 'artist_details' pk=artist.id %}">See more info about {{ artist.artist_name }}</a>
+                    </div>
+                </div>
             </div>
         </div>
 

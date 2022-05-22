@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!-- White background -->
+    <div class="container h-100 overlay"></div>
+    <div class="container-fluid">
+        <!-- Page-title -->
+        <div class="row h-100">
+            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+                <h2 class="logo-font">{{ artist.artist_name }}</h2>
+                <hr class="w-50 mb-1">
+                <!-- Artist-image -->
+                <div class="image-container my-5">
+                    {% if artist.image_url %}
+                        <a href="{{ artist.image_url }}" target="_blank">
+                            <img class="card-img-top img-fluid" src="{{ artist.image_url }}" alt="{{ artist.artist_name }}">
+                        </a>
+                    {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ artist.artist_name }}">
+                        </a>
+                    {% endif %}
+                </div>
+                <!-- Artist-info -->
+                <div class="card-footer bg-white pt-0 border-0 text-left">
+                    <div class="row">
+                        <div class="col">
+                            <p class="mb-0 text-left">{{ artist.artist_description }}</p>
+                            <p class="mb-0 text-left">Category: {{ artist.category }}</p>
+                            {% if artist.rating %}
+                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ artist.rating }} / 10 (+ how many?)</small>
+                            {% else %}
+                                <small class="text-muted">No rating</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Links to other pages -->
+            <div class="col">
+                <div class="row">
+                    <div class="card-action">
+                        <a href="{% url 'artist_products' pk=artist.id %}">Buy a performance from {{ artist.artist_name }}</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card-action">
+                        <a href="{% url 'artist_page1' pk=artist.id %}">See performances from {{ artist.artist_name }}</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card-action">
+                        <a href="{% url 'artists' %}">See all artists</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
