@@ -14,8 +14,22 @@ def all_performances(request):
     performances = Performance.objects.all()
     query = None
     categories = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortKey = request.GET['sort']
+            sort = sortKey
+            if sortKey == 'name':
+                sortKey = 'lower_name'
+                performances = performances.annotate(lower_name=Lower('name'))
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortKey = f'-{sortKey}'
+            performances = performances.order_by(sortKey)
+
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             performances = performances.filter(category__name__in=categories) #Related Field got invalid lookup: name
@@ -29,11 +43,14 @@ def all_performances(request):
 
             queries = Q(performance_title__icontains=query) | Q(performance_description__icontains=query)
             performances = performances.filter(queries)
+    
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'performances': performances,
         'search_term': query,
         'current_categories': categories,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'performances/performances.html', context)
@@ -44,8 +61,27 @@ def all_artists(request):
 
     artists = Artist.objects.all()
 
+    sort = None
+    direction = None
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortKey = request.GET['sort']
+            sort = sortKey
+            if sortKey == 'name':
+                sortKey = 'lower_name'
+                artists = artists.annotate(lower_name=Lower('name'))
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortKey = f'-{sortKey}'
+            artists = artists.order_by(sortKey)
+
+    current_sorting = f'{sort}_{direction}'
+
     context = {
         'artists': artists,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'artists/artists.html', context)

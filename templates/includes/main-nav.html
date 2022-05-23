@@ -6,12 +6,12 @@
                 All Artists
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-artists-link">
-                <a href="{% url 'artists' %}" class="dropdown-item">By Name</a>
-                <a href="" class="dropdown-item">By Rating</a>
+                <a href="{% url 'artists' %}?sort=artist_name&direction=asc" class="dropdown-item">By Name</a>
+                <a href="{% url 'artists' %}?sort=artist_rating&direction=desc" class="dropdown-item">By Rating</a>
                 <a href="" class="dropdown-item">By Most Viewed</a>
                 <a href="" class="dropdown-item">By Price (high-low)</a>
                 <a href="" class="dropdown-item">By Price (low-high)</a>
-                <a href="{% url 'artists' %}" class="dropdown-item">All Artists Random</a>
+                <a href="{% url 'artists' %}" class="dropdown-item">All Artists</a>
             </div>
         </li>
         <!-- All performances-dropdown -->
@@ -20,11 +20,10 @@
                 All Performances
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-performances-link">
-                <a href="{% url 'performances' %}" class="dropdown-item">By Title</a>
-                <a href="" class="dropdown-item">By Artist</a>
-                <a href="" class="dropdown-item">By Rating</a>
+                <a href="{% url 'performances' %}?sort=performance_title&direction=asc" class="dropdown-item">By Title</a>
+                <a href="{% url 'performances' %}?sort=artist_id&direction=asc" class="dropdown-item">By Artist</a>
                 <a href="" class="dropdown-item">By Most Viewed</a>
-                <a href="{% url 'performances' %}" class="dropdown-item">All Performances Random</a>
+                <a href="{% url 'performances' %}" class="dropdown-item">All Performances</a>
             </div>
         </li>
         <!-- Category-dropdown -->
