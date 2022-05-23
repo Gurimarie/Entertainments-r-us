@@ -33,16 +33,16 @@
                 Category
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="category-link">
-                <a href="" class="dropdown-item">Blues</a>
-                <a href="" class="dropdown-item">Classical -instrumental</a>
-                <a href="" class="dropdown-item">Classical -voice</a>
-                <a href="" class="dropdown-item">Folk</a>
-                <a href="" class="dropdown-item">Heavy-metal</a>
-                <a href="" class="dropdown-item">Jazz</a>
-                <a href="" class="dropdown-item">Musical/Showtunes</a>
-                <a href="" class="dropdown-item">Pop</a>
-                <a href="" class="dropdown-item">Rock</a>
-                <a href="" class="dropdown-item">Other</a>
+                <a href="{% url 'performances' %}?category=Blues" class="dropdown-item">Blues</a>
+                <a href="{% url 'performances' %}?category=Classical -instrumental" class="dropdown-item">Classical -instrumental</a>
+                <a href="{% url 'performances' %}?category=Classical -voice" class="dropdown-item">Classical -voice</a>
+                <a href="{% url 'performances' %}?category=Folk" class="dropdown-item">Folk</a>
+                <a href="{% url 'performances' %}?category=Heavy-metal" class="dropdown-item">Heavy-metal</a>
+                <a href="{% url 'performances' %}?category=Jazz" class="dropdown-item">Jazz</a>
+                <a href="{% url 'performances' %}?category=Musical/Showtunes" class="dropdown-item">Musical/Showtunes</a>
+                <a href="{% url 'performances' %}?category=Pop" class="dropdown-item">Pop</a>
+                <a href="{% url 'performances' %}?category=Rock" class="dropdown-item">Rock</a>
+                <a href="{% url 'performances' %}?category=Other" class="dropdown-item">Other</a>
             </div>
         </li>
         <!-- Artist-type-dropdown -->
