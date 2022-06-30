@@ -55,7 +55,8 @@ class Artist(models.Model):
         verbose_name_plural = 'Artists'
 
     artist_name = models.CharField(max_length=254)
-    artist_description_short = models.TextField(max_length=254, null=True, blank=True)
+    artist_description_short = models.TextField(max_length=254, null=True,
+                                                blank=True)
     artist_description = models.TextField(null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     category = models.ForeignKey(

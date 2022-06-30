@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Performance, Artist, Category, ArtistType
+from .models import Performance, Artist, Category, ArtistType, Product
 
 
 # Create your views here.
@@ -33,19 +33,23 @@ def all_performances(request):
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            performances = performances.filter(category__category_name__in=categories)
+            performances = performances.filter(
+                                category__category_name__in=categories)
             categories = Category.objects.filter(category_name__in=categories)
 
-        # Complex lookups with Q objects (https://docs.djangoproject.com/en/3.2/topics/db/queries/)
+        # Complex lookups with Q objects
+        # (https://docs.djangoproject.com/en/3.2/topics/db/queries/)
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                        request, "You didn't enter any search criteria!")
                 return redirect(reverse('products/'))
 
-            queries = Q(performance_title__icontains=query) | Q(performance_description__icontains=query)
+            queries = Q(performance_title__icontains=query) | Q(
+                        performance_description__icontains=query)
             performances = performances.filter(queries)
-    
+
     current_sorting = f'{sort}_{direction}'
 
     context = {
@@ -79,11 +83,13 @@ def all_artists(request):
                 if direction == 'desc':
                     sortKey = f'-{sortKey}'
             artists = artists.order_by(sortKey)
-        
+
         if 'artist_type' in request.GET:
             artist_types = request.GET['artist_type'].split(',')
-            artists = artists.filter(artist_type__artist_type_name__in=artist_types)
-            artist_types = ArtistType.objects.filter(artist_type_name__in=artist_types)
+            artists = artists.filter(
+                artist_type__artist_type_name__in=artist_types)
+            artist_types = ArtistType.objects.filter(
+                                artist_type_name__in=artist_types)
 
     current_sorting = f'{sort}_{direction}'
 
