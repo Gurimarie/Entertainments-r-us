@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Performance, Artist, Category
+from .models import Performance, Artist, Category, ArtistType
 
 
 # Create your views here.
@@ -32,7 +32,7 @@ def all_performances(request):
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            performances = performances.filter(category__category_name__in=categories)  # Related Field got invalid lookup: name
+            performances = performances.filter(category__category_name__in=categories)
             categories = Category.objects.filter(category_name__in=categories)
 
         # Complex lookups with Q objects (https://docs.djangoproject.com/en/3.2/topics/db/queries/)
@@ -64,6 +64,7 @@ def all_artists(request):
 
     sort = None
     direction = None
+    artist_types = None
 
     if request.GET:
         if 'sort' in request.GET:
@@ -77,12 +78,18 @@ def all_artists(request):
                 if direction == 'desc':
                     sortKey = f'-{sortKey}'
             artists = artists.order_by(sortKey)
+        
+        if 'artist_type' in request.GET:
+            artist_types = request.GET['artist_type'].split(',')
+            artists = artists.filter(artist_type__artist_type_name__in=artist_types)
+            artist_types = ArtistType.objects.filter(artist_type_name__in=artist_types)
 
     current_sorting = f'{sort}_{direction}'
 
     context = {
         'artists': artists,
         'current_sorting': current_sorting,
+        'current_artist_types': artist_types,
     }
 
     return render(request, 'artists/artists.html', context)
