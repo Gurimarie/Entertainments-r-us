@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://entertainments-r-us.herokuapp.com/', 
+    'https://entertainments-r-us.herokuapp.com/',
     'localhost',
     'entertainments-r-us.herokuapp.com',
 ]
@@ -80,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',   # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shoppingbag.contexts.bag_contents',
             ],
         },
     },
