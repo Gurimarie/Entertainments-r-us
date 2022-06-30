@@ -59,6 +59,9 @@
                 Artist-type
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="artist-type-link">
+                {% for artisttype in artist_types %}
+                    <a href="{% url 'artists' %}?artist_type=artisttype" class="dropdown-item">{{ 'artisttype' }}</a>
+                {% endfor %}
                 <a href="{% url 'artists' %}?artist_type=Band" class="dropdown-item">Band</a>
                 <a href="{% url 'artists' %}?artist_type=Choir" class="dropdown-item">Choir</a>
                 <a href="{% url 'artists' %}?artist_type=Group" class="dropdown-item">Group</a>
