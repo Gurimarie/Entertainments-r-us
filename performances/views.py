@@ -32,7 +32,7 @@ def all_performances(request):
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            performances = performances.filter(category__name__in=categories) #Related Field got invalid lookup: name
+            performances = performances.filter(category__name__in=categories)  # Related Field got invalid lookup: name
             categories = Category.objects.filter(name__in=categories)
 
         if 'q' in request.GET:

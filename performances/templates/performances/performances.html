@@ -32,18 +32,19 @@
                              <div class="card h-100 border-2">
                                  <!-- Video-section -->
                                  {% if performance.video_url %}
-                                 <a href="">
-                                     <video class="card-img-top img-fluid" src="{{ performance.video_url }}" alt="{{ performance.performance_title }}" style="width: 18rem;"></video>
-                                 </a>
+                                    <!-- Bootstrap iframe https://mdbootstrap.com/docs/standard/extended/video/ -->
+                                    <div class="ratio ratio-16x9">
+                                        <iframe src="{{ performance.video_url }}" title="YouTube video" alt="{{ performance.performance_title }}" allowfullscreen></iframe>
+                                    </div>
                                  {% else %}
-                                 <a href="">
-                                     <ing class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ performance.performance_title }}">
-                                 </a>
+                                    <a href="">
+                                        <ing class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ performance.performance_title }}">
+                                    </a>
                                  {% endif %}
                                  <!-- Info-section -->
                                  <div class="card-body pb-0">
                                     <p class="lead mb-0 font-weight-bold">{{ performance.artist_id }}</p>
-                                </div>
+                                 </div>
                                  <div class="card-body pb-0">
                                      <p class="lead mb-0 font-weight-bold">{{ performance.performance_title }}</p>
                                  </div>
