@@ -78,6 +78,22 @@ body {
     z-index: -1;
 }
 
+
+/* CSS for "Back to top"-button from Boutique Ado-project */
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btt-link {
+    cursor: pointer;
+}
+   
+
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
