@@ -32,9 +32,10 @@ def all_performances(request):
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            performances = performances.filter(category__name__in=categories)  # Related Field got invalid lookup: name
-            categories = Category.objects.filter(name__in=categories)
+            performances = performances.filter(category__category_name__in=categories)  # Related Field got invalid lookup: name
+            categories = Category.objects.filter(category_name__in=categories)
 
+        # Complex lookups with Q objects (https://docs.djangoproject.com/en/3.2/topics/db/queries/)
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
