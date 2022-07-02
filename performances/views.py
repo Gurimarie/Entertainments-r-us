@@ -17,16 +17,17 @@ def all_performances(request):
 
     if request.GET:
         if 'sort' in request.GET:
-            sortKey = request.GET['sort']
-            sort = sortKey
-            if sortKey == 'name':
-                sortKey = 'lower_name'
+            sort_key = request.GET['sort']
+            sort = sort_key
+            if sort_key == 'name':
+                sort_key = 'lower_name'
                 performances = performances.annotate(lower_name=Lower('name'))
+
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
-                    sortKey = f'-{sortKey}'
-            performances = performances.order_by(sortKey)
+                    sort_key = f'-{sort_key}'
+            performances = performances.order_by(sort_key)
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
@@ -34,7 +35,8 @@ def all_performances(request):
                                 category__category_name__in=categories)
             categories = Category.objects.filter(category_name__in=categories)
 
-        # Complex lookups with Q objects
+        # The search-function will search titles and desriptions of
+        # performances for match by using complex lookups with Q objects
         # (https://docs.djangoproject.com/en/3.2/topics/db/queries/)
         if 'q' in request.GET:
             query = request.GET['q']
@@ -47,6 +49,7 @@ def all_performances(request):
                         performance_description__icontains=query)
             performances = performances.filter(queries)
 
+    # Return current_sorting to the template
     current_sorting = f'{sort}_{direction}'
 
     context = {
@@ -70,16 +73,16 @@ def all_artists(request):
 
     if request.GET:
         if 'sort' in request.GET:
-            sortKey = request.GET['sort']
-            sort = sortKey
-            if sortKey == 'name':
-                sortKey = 'lower_name'
+            sort_key = request.GET['sort']
+            sort = sort_key
+            if sort_key == 'name':
+                sort_key = 'lower_name'
                 artists = artists.annotate(lower_name=Lower('name'))
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
-                    sortKey = f'-{sortKey}'
-            artists = artists.order_by(sortKey)
+                    sort_key = f'-{sort_key}'
+            artists = artists.order_by(sort_key)
 
         if 'artist_type' in request.GET:
             artist_types = request.GET['artist_type'].split(',')

@@ -29,36 +29,6 @@ class ArtistType(models.Model):
         return str(self.artist_type_name)
 
 
-class Performance(models.Model):
-    """ Performance-model """
-
-    class Meta:
-        """ plural name to show in the admin """
-        verbose_name_plural = 'Performances'
-
-    artist_id = models.ForeignKey(
-        'Artist', null=True, on_delete=models.SET_NULL)
-    performance_title = models.CharField(
-        max_length=254, null=False, blank=False)
-    performance_description = models.TextField(null=True, blank=True)
-    composer = models.CharField(max_length=300, null=True, blank=True)
-    video_url = models.URLField(max_length=1024, null=True, blank=True)
-    category = models.ForeignKey(
-        'Category', null=True, on_delete=models.SET_NULL)
-
-    def get_performance_title(self):
-        """ Return performance_title """
-        return self.performance_title
-
-    def get_performance_description(self):
-        """ Return performance_description """
-        return self.performance_description
-
-    def get_composer(self):
-        """ Return composer-name """
-        return self.composer
-
-
 class Artist(models.Model):
     """ Artist-model """
 
@@ -89,6 +59,36 @@ class Artist(models.Model):
     def get_artist_description(self):
         """ Return artist_description """
         return self.artist_description
+
+
+class Performance(models.Model):
+    """ Performance-model """
+
+    class Meta:
+        """ plural name to show in the admin """
+        verbose_name_plural = 'Performances'
+
+    artist_id = models.ForeignKey(
+        'Artist', null=True, on_delete=models.SET_NULL)
+    performance_title = models.CharField(
+        max_length=254, null=False, blank=False)
+    performance_description = models.TextField(null=True, blank=True)
+    composer = models.CharField(max_length=300, null=True, blank=True)
+    video_url = models.URLField(max_length=1024, null=True, blank=True)
+    category = models.ForeignKey(
+        'Category', null=True, on_delete=models.SET_NULL)
+
+    def get_performance_title(self):
+        """ Return performance_title """
+        return self.performance_title
+
+    def get_performance_description(self):
+        """ Return performance_description """
+        return self.performance_description
+
+    def get_composer(self):
+        """ Return composer-name """
+        return self.composer
 
 
 class Product(models.Model):

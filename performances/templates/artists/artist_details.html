@@ -36,8 +36,8 @@
                         <div class="col">
                             <p class="mb-0 text-left">{{ artist.artist_description }}</p>
                             <p class="mb-0 text-left">Category: {{ artist.category }}</p>
-                            {% if artist.rating %}
-                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ artist.rating }} / 10 (+ how many?)</small>
+                            {% if artist.artist_rating %}
+                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ artist.artist_rating }} / 5</small>
                             {% else %}
                                 <small class="text-muted">No rating</small>
                             {% endif %}
