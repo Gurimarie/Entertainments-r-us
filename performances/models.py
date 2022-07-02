@@ -13,7 +13,7 @@ class Category(models.Model):
 
     def __str__(self):
         """ Return category_name instead of category-id (pk) """
-        return self.category_name
+        return str(self.category_name)
 
 
 class ArtistType(models.Model):
@@ -26,7 +26,7 @@ class ArtistType(models.Model):
 
     def __str__(self):
         """ Return artist_type_name instead of artist-type-id (pk) """
-        return self.artist_type_name
+        return str(self.artist_type_name)
 
 
 class Performance(models.Model):
@@ -80,7 +80,7 @@ class Artist(models.Model):
 
     def __str__(self):
         """ Return artist-name instead of artist-id (pk) """
-        return self.artist_name
+        return str(self.artist_name)
 
     def get_artist_name(self):
         """ Return artist_name """
