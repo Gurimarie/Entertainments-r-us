@@ -40,12 +40,15 @@
              <div class="col s12 m6 xl4 artist-container offset-1">
                  <div class="row mt-1 mb-2"></div>
                  <div class="row">
-                     {% for product in products %}
+                     {% for product in artists_products %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card h-100 border-2">
                                  <!-- Name-section -->
                                  <div class="card-body pb-0">
-                                     <p class="lead mb-0 font-weight-bold">{{ product.product_name}}</p>
+                                    <a href="{% url 'artist_product_details' pk=product.pk %}">
+                                        <p class="lead mb-0 font-weight-bold">{{ product.product_name}}</p>
+                                        <p class="lead mb-0 font-weight-bold">{{ product.pk}}</p>
+                                    </a>
                                  </div>
                                  <div class="card-footer bg-white pt-0 border-0 text-left">
                                      <div class="row">

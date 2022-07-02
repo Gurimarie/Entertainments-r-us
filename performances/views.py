@@ -6,9 +6,6 @@ from django.db.models.functions import Lower
 from .models import Performance, Artist, Category, ArtistType, Product
 
 
-# Create your views here.
-
-
 def all_performances(request):
     """ A view to return the all_performances, incl. sorting and searching"""
 
@@ -132,11 +129,23 @@ def artist_products(request, pk):
     """ A view to return all products for chosen artist """
 
     artist = get_object_or_404(Artist, pk=pk)
-    products = Product.objects.filter(artist_id=pk)
+    artists_products = Product.objects.filter(artist_id=pk)
 
     context = {
         'artist': artist,
-        'products': products,
+        'artists_products': artists_products,
     }
 
     return render(request, 'artists/artist_products.html', context)
+
+
+def artist_product_details(request, pk):
+    """ A view to return details for specific product for the chosen artist """
+
+    product = get_object_or_404(Product, pk=pk)
+
+    context = {
+        'product': product,
+    }
+
+    return render(request, 'artists/artist_product_details.html', context)
