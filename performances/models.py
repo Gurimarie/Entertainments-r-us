@@ -3,30 +3,37 @@ from django.db import models
 
 
 class Category(models.Model):
-    """ plural name to show in the admin """
-    class Meta:
-        verbose_name_plural = 'Categories'
-
+    """ Categoy-model """
     category_name = models.CharField(max_length=200)
 
+    class Meta:
+        """ plural name to show in the admin """
+        verbose_name_plural = 'Categories'
+        ordering = ('category_name',)
+
     def __str__(self):
+        """ Return category_name instead of category-id (pk) """
         return self.category_name
 
 
 class ArtistType(models.Model):
-    """ plural name to show in the admin """
-    class Meta:
-        verbose_name_plural = 'ArtistTypes'
-
+    """ ArtistType-model """
     artist_type_name = models.CharField(max_length=200)
 
+    class Meta:
+        """ plural name to show in the admin """
+        verbose_name_plural = 'ArtistTypes'
+
     def __str__(self):
+        """ Return artist_type_name instead of artist-type-id (pk) """
         return self.artist_type_name
 
 
 class Performance(models.Model):
-    """ plural name to show in the admin """
+    """ Performance-model """
+
     class Meta:
+        """ plural name to show in the admin """
         verbose_name_plural = 'Performances'
 
     artist_id = models.ForeignKey(
@@ -40,18 +47,23 @@ class Performance(models.Model):
         'Category', null=True, on_delete=models.SET_NULL)
 
     def get_performance_title(self):
+        """ Return performance_title """
         return self.performance_title
 
     def get_performance_description(self):
+        """ Return performance_description """
         return self.performance_description
 
     def get_composer(self):
+        """ Return composer-name """
         return self.composer
 
 
 class Artist(models.Model):
-    """ plural name to show in the admin """
+    """ Artist-model """
+
     class Meta:
+        """ plural name to show in the admin """
         verbose_name_plural = 'Artists'
 
     artist_name = models.CharField(max_length=254)
@@ -67,18 +79,23 @@ class Artist(models.Model):
         max_digits=6, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
+        """ Return artist-name instead of artist-id (pk) """
         return self.artist_name
 
     def get_artist_name(self):
+        """ Return artist_name """
         return self.artist_name
 
     def get_artist_description(self):
+        """ Return artist_description """
         return self.artist_description
 
 
 class Product(models.Model):
-    """ plural name to show in the admin """
+    """ Product-model """
+
     class Meta:
+        """ plural name to show in the admin """
         verbose_name_plural = 'Products'
 
     product_name = models.CharField(max_length=200)
