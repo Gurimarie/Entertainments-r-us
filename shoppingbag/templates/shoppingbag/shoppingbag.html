@@ -14,7 +14,7 @@
 {% block content %}
     <!-- White background -->
     <div class="container h-100 overlay"></div>
-    <div class="container-fluid">
+    <div class="container">
         <!-- Page-title -->
         <div class="row h-100">
             <div class="col-7 col-md-6 my-auto">
@@ -25,20 +25,64 @@
         </div>
 
         <!-- Bag-content -->
-        <div class="row">
-            <div class="col">
+        <div class="table-responsive rounded d-block">
                 {% if bag_items %}
-                    <div class="table-responsive rounded"></div>
-                {% else %}
-                    <p class="lead mb-5">Your bag is empty...</p>
-                    <a href="{% url 'artists' %}" class="btn btn-outline-black rounded-0 btn">
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <tr>
+                            <th class="py-3">Artist</th>
+                            <th class="py-3">Product</th>
+                            <th class="py-3">Quantity</th>
+                            <th class="py-3">Unit price</th>
+                            <th class="py-3">Subtotal</th>
+                            <th class="py-3">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in bag_items %}
+                            <tr>
+                                <td class="py-3 w-25">{{ item.product.artist_id }}</td>
+                                <td class="py-3 w-25">{{ item.product.product_name }}</td>
+                                <td class="py-3">{{ item.quantity }}</td>
+                                <td class="py-3 num text-right">$ {{ item.product.price }}</td>
+                                <td class="py-3 num text-right">$ {{ item.total }}</td>
+                                <td class="py-3">
+                                    <form action="#" method="POST">
+                                        <input type="submit" value="remove">
+                                        {% csrf_token %}
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                <div class="total pt-5 text-right">
+                    <h5><strong>Shoppingbag Total: $ {{ total|floatformat:0  }}</strong></h5>
+                </div>
+                <p class="text-right">
+                    <a href="{% url 'artists' %}" class="btn btn-outline-black rounded-0 btn-lg">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
-                        <span class="text-uppercase">Keep shopping</span>
+                        <span class="text-uppercase">Keep browsing artists</span>
+                    </a>
+                    <a href="#" class="btn btn-black rounded-0 btn-lg">
+                        <span>Secure CheckOut</span>
+                        <span class="icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </a>
+                </p>
+                {% else %}
+                    <p class="lead mb-5">Your bag is empty...</p>
+                    <a href="{% url 'artists' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="text-uppercase">Keep browsing artists</span>
                     </a>
                 {% endif %}
-            </div>
         </div>
     </div>
 {% endblock %}
