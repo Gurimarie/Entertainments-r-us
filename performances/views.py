@@ -19,7 +19,7 @@ def all_performances(request):
         if 'sort' in request.GET:
             sort_key = request.GET['sort']
             sort = sort_key
-            if sort_key == 'name':
+            if sort_key == 'name':  # performance_title instead of name?
                 sort_key = 'lower_name'
                 performances = performances.annotate(lower_name=Lower('name'))
 
@@ -75,9 +75,10 @@ def all_artists(request):
         if 'sort' in request.GET:
             sort_key = request.GET['sort']
             sort = sort_key
-            if sort_key == 'name':
+            if sort_key == 'name':  # artist_name instead of just name?
                 sort_key = 'lower_name'
                 artists = artists.annotate(lower_name=Lower('name'))
+
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':

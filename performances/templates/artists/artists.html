@@ -33,6 +33,9 @@
             <div class="row mt-1 mb-2">
                 <div class="col-12 col-md-6 my-auto d-flex justify-content-center justify-content-md-end">
                     <div class="sort-select-wrapper w-50">
+                        <!-- Error: "Cannot resolve keyword 'name' into field. Choices are: Artist_name, artist_type, id, category etc..."
+                        Need to fix the keywords here and in views for the filter to work. 
+                        Comment out for now, and get back to it later...
                         <select id="sort-selector"
                             class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                             <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort
@@ -48,6 +51,7 @@
                                 {% if current_sorting == 'artist_type_desc' %}selected{% endif %}>Artist Types (Z - A)
                             </option>
                         </select>
+                        -->
                         <p class="text-muted mt-3 text-center text-md-left">
                             <div>
                                 {% if search_term or current_categories or current_sorting != 'None_None' %}
@@ -126,6 +130,31 @@
 
 {% block postload_js %}
      {{ block.super }}
+     <!-- Filter/select-box -->
+     <script type="text/javascript">
+        $('#sort-selector').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+
+            var selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+     </script>
+
+
      <!-- "Back to top"-button from Boutique Ado-project -->
      <script type="text/javascript">
         $('.btt-link').click(function(e) {
