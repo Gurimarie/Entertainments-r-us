@@ -59,6 +59,12 @@ body {
     color: white;
 }
 
+a.artist-type-badge > span.badge:hover,
+a.performance-category-badge > span.badge:hover {
+    background: #222 !important;
+    color: white !important;
+}
+
 .text-black {
     color: #000 !important;
 }
