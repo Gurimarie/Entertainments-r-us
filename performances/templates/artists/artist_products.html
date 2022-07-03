@@ -17,31 +17,18 @@
      <div class="container-fluid">
          <!-- Page-title -->
          <div class="row h-100">
-             <div class="col-7 col-md-6 my-auto">
+             <div class="col text-center mt-3">
                  <h2 class="logo-font">Products for {{ artist.artist_name }}</h2>
                  <hr class="w-50 mb-1">
              </div>
          </div>
-         <!-- Links to other pages -->
-         <div class="col">
-            <div class="row">
-                <div class="card-action">
-                    <a href="{% url 'artist_page1' pk=artist.id %}">Back to artist-page</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="card-action">
-                    <a href="{% url 'artists' %}">Back to all artists</a>
-                </div>
-            </div>
-        </div>
          <!-- Display-area -->
          <div class="row">
              <div class="col s12 m6 xl4 artist-container offset-1">
                  <div class="row mt-1 mb-2"></div>
                  <div class="row">
                      {% for product in artists_products %}
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 text-center">
                             <div class="card h-100 border-2">
                                  <!-- Name-section -->
                                  <div class="card-body pb-0">
@@ -83,5 +70,12 @@
                  </div>
              </div>
          </div>
+         <!-- Links to other pages -->
+         <div class="row h-100">
+            <div class="col text-center mt-3">
+                <div><a href="{% url 'artist_page1' pk=artist.id %}">Back to artist-page</a></div>
+                <div><a href="{% url 'artists' %}">Back to all artists</a></div>
+            </div>
+        </div>
      </div>
 {% endblock %}

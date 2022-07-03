@@ -5,7 +5,6 @@
     <div class="container header-container">
         <div class="row">
             <div class="col">
-
             </div>
         </div>
     </div>
@@ -16,17 +15,16 @@
     <div class="container h-100 overlay"></div>
     <div class="container-fluid">
         <!-- Links to other pages -->
-        <div class="col">
-            <div class="row">
-                <div class="card-action">
-                    <a href="{% url 'artists' %}">Back to all artists</a>
-                </div>
+        <div class="row">
+            <div class="card-action">
+                <a href="{% url 'artists' %}">Back to all artists</a>
             </div>
         </div>
+        
               
         <!-- Page-title -->
         <div class="row h-100">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+            <div class="col text-center mt-3">
                 <h2 class="logo-font">{{ product.product_name}} for {{ product.artist_id }}</h2>
                 <hr class="w-50 mb-1">
             </div>
