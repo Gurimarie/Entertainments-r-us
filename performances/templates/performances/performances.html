@@ -29,11 +29,12 @@
          </div>
          <!-- Display-area -->
          <div class="row">
-            <!-- Page-filter from Boutique Ado-project -->
              <div class="performances-container offset-1">
+                <!-- Page-filter from Boutique Ado-project -->
                  <div class="row mt-1 mb-2">
                      <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
                          <div class="sort-select-wrapper w-50">
+                            <!-- On-page filter to sort performances on several criteria -->
                             <!-- The filter is not working. 
                                 Probably need to fix the keywords here and in views for the filter to work. 
                                 Comment out for now, and get back to it later...
@@ -54,11 +55,13 @@
                              </select>
                              -->
                              <p class="text-muted mt-3 text-center text-md-left">
-                                 <div>
+                                <!-- Link to "All performances" of filter is in use --> 
+                                <div>
                                      {% if search_term or current_categories or current_sorting != 'None_None' %}
                                      <span class="small"><a href="{% url 'performances' %}">Performances Home</a></span>
                                      {% endif %}
                                  </div>
+                                 <!-- Number of results returned -->
                                  <div>
                                      {{ performances|length }} Performances{% if search_term %} found for
                                      ><strong>"{{ search_term }}"</strong>{% endif %}
@@ -68,9 +71,10 @@
                      </div>
                      <div class="col-12 col-md-6 order-md-first"></div>
                  </div>
+                 <!-- Show performances-section -->
                  <div class="row">
                      {% for performance in performances %}
-                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
                              <div class="card h-100 border-2">
                                  <!-- Video-section -->
                                  {% if performance.video_url %}
