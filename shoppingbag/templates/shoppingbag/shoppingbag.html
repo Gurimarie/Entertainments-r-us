@@ -47,14 +47,13 @@
                                 <td class="py-3 num text-right">$ {{ item.product.price }}</td>
                                 <td class="py-3 num text-right">$ {{ item.total }}</td>
                                 <td class="py-3">
-                                    <form action="#" method="POST">
+                                    <form action="{% url 'remove_from_bag' item.product.id %}" method="POST">
                                         <input type="submit" value="remove">
                                         {% csrf_token %}
                                     </form>
                                 </td>
                             </tr>
                         {% endfor %}
-                        
                     </tbody>
                 </table>
                 <div class="total pt-5 text-right">
@@ -85,4 +84,23 @@
                 {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+
+    <script type="text/javascript">
+        // Remove item and reload page on click
+        $('.remove-item').click(function(e) {
+            var csrfToken = "{{ csrf_token }}";
+            var itemId = $(this).attr('id').split('remove_')[1];
+            var url = 'shoppingbag/remove/${itemId}/';
+            var data = {'csrfmiddlewaretoken': csrfToken, };
+
+            $.post(url, data)
+            .done(function(){
+                location.reload();
+            });
+        });
+</script>
 {% endblock %}
