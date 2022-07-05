@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load shoppingbag_tools %}
+
 
 {% block page_header %}
     <div class="container header-container">
@@ -35,7 +37,7 @@
                             <th class="py-3 text-center">Quantity</th>
                             <th class="py-3 text-right">Unit price</th>
                             <th class="py-3 text-right">Subtotal</th>
-                            <th class="py-3">Remove</th>
+                            <th class="py-3 text-right">Remove</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,8 +47,8 @@
                                 <td class="py-3">{{ item.product.product_name }}</td>
                                 <td class="py-3 text-center">{{ item.quantity }}</td>
                                 <td class="py-3 num text-right">$ {{ item.product.price }}</td>
-                                <td class="py-3 num text-right">$ {{ item.total }}</td>
-                                <td class="py-3">
+                                <td class="py-3 num text-right">$ {{ item.product.price | calc_subtotal:item.quantity }}</td>
+                                <td class="py-3 text-right">
                                     <form action="{% url 'remove_from_bag' item.product.id %}" method="POST">
                                         <input type="submit" value="remove">
                                         {% csrf_token %}
