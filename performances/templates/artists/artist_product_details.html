@@ -20,8 +20,7 @@
                     <a href="{% url 'artists' %}">Back to all artists</a>
                 </div>
                 <div>
-                    <a href="#">Back to all products</a>
-                    <!-- url 'artist_page1' pk=product.artist_id  doesn't work because artist_id is returned as artist_name -->
+                    <a href="{% url 'artist_products' pk=product.artist_id.id %}">Back to all products</a>
                 </div>
             </div>
         </div>
