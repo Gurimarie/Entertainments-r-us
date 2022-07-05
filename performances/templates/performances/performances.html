@@ -89,11 +89,15 @@
                                  {% endif %}
                                  <!-- Info-section -->
                                  <div class="card-body pb-0">
-                                    <p class="lead mb-0 font-weight-bold">{{ performance.artist_id }}</p>
+                                    <a href="{% url 'artist_page1' pk=performance.artist_id.id %}">
+                                        <p class="lead mb-0 font-weight-bold">{{ performance.artist_id }}</p>
+                                    </a>
                                  </div>
                                  <div class="card-body pb-0">
-                                     <p class="lead mb-0 font-weight-bold">{{ performance.performance_title }}</p>
-                                     <hr>
+                                    <a href="{{ performance.video_url }}" target="_blank">
+                                        <p class="lead mb-0 font-weight-bold">{{ performance.performance_title }}</p>
+                                    </a>
+                                    <hr>
                                  </div>
                                  <div class="card-footer bg-white pt-0 border-0 text-left">
                                      <div class="row">
@@ -108,7 +112,7 @@
                                      </div>
                                  </div>
                                  <!-- Link to artist-page -->
-                                 <div class="card-action">
+                                 <div class="card-action text-center">
                                      <a href="{% url 'artist_page1' pk=performance.artist_id.id %}">Go to artist-page</a>
                                  </div>
                              </div>
