@@ -42,8 +42,8 @@ def all_performances(request):
             query = request.GET['q']
             if not query:
                 messages.error(
-                        request, "You didn't enter any search criteria!")
-                return redirect(reverse('products/'))
+                        request, "You didn't enter any search criteria! Redirect to all performances.")
+                return redirect(reverse('performances'))
 
             queries = Q(performance_title__icontains=query) | Q(
                         performance_description__icontains=query)
