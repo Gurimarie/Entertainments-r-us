@@ -1,6 +1,9 @@
 """ Views for shoppingbag-app, from Project Ado, Code Institute... """
 
 from django.shortcuts import render, redirect
+from django.contrib import messages
+
+from performances.models import Product
 
 
 def view_shoppingbag(request):
@@ -11,6 +14,7 @@ def view_shoppingbag(request):
 def add_to_bag(request, item_id):
     """ Add a quantity of the specified product to the shopping bag """
 
+    product = Product.objects.get(pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})  # Get (or create) bag-variable
@@ -18,6 +22,7 @@ def add_to_bag(request, item_id):
         bag[item_id] += quantity    # Add additional item to bag
     else:
         bag[item_id] = quantity     # Add item to bag
+        messages.success(request, f'Added {product.product_name} to your bag')
 
     request.session['bag'] = bag   # Over-write session-bag with updated bag
     return redirect(redirect_url)
