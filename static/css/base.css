@@ -18,6 +18,11 @@ body {
     background-color: white;
 }
 
+.performance-card,
+.artist-card {
+    margin-bottom: 15px;
+}
+
 /* CSS from Boutique Ado-project, Code Institute */
 
 /* from Bulma (to optimize font-awsome-icons) */
