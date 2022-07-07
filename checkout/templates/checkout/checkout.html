@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load shoppingbag_tools %}
+{% load crispy_forms_tags %}
 
 
 {% block extra_css %}
@@ -36,8 +37,11 @@
                 <!-- order-summary-header -->
                 <p class="text-muted">Order Summary ({{ product_count }})</p>
                 <div class="row">
-                    <div class="col-7 offset-2">
+                    <div class="col-6 offset-2">
                         <p class="mb-1 mt-0 small text-muted">Item</p>
+                    </div>
+                    <div class="col-1 text-center">
+                        <p class="mb-1 mt-0 small text-muted">Qty</p>
                     </div>
                     <div class="col-3 text-right">
                         <p class="mb-1 mt-0 small text-muted">Subtotal</p>
@@ -48,19 +52,21 @@
                     <div class="col-2 mb-1">
                         <a href="{% url 'artist_product_details' item.product.id %}">
                             {% if item.artist_id.image_url %}
-                                <img class="w-100" src="{{ item.artist_id.image_url }}" alt="{{ item.product_name }}">
+                                <img class="w-100" src="{{ item.artist_id.image_url }}" alt="{{ item.product.artist_id }}">
                             {% else %}
-                                <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product_name }}">  
+                                <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.artist_id }}">  
                             {% endif %}
                         </a>
                     </div>
-                    <div class="col-7">
-                        <p class="my-0"><strong>{{ item.product_name }}</strong></p>
-                        <p class="my-0"><strong> with {{ item.artist_id }}</strong></p>
+                    <div class="col-6">
+                        <p class="my-0"><strong>{{ item.product.product_name }} with {{ item.product.artist_id }}</strong></p>
                         <p class="my-0"><strong>Qty: {{ item.quantity }}</strong></p>
                     </div>
+                    <div class="col-1">
+                        <p class="my-0"><strong>{{ item.quantity }}</strong></p>
+                    </div>
                     <div class="col-3 text-right">
-                        <p class="my-0 small text-muted">$ {{ item.product.price | calc_subtotal:item.quantity }</p>
+                        <p class="my-0 small text-muted">$ {{ item.product.price | calc_subtotal:item.quantity }}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -82,19 +88,19 @@
                     {% csrf_token %}
                     <fieldset class="rounded px-3 mb-5">
                         <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
-                        {{ order_form.full_name | as crispy_field }}
-                        {{ order_form.email | as crispy_field }}
+                        {{ order_form.full_name | as_crispy_field }}
+                        {{ order_form.email | as_crispy_field }}
                     </fieldset>
                     <!-- Fields for address-info -->
                     <fieldset class="rounded px-3 mb-5">
                         <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
-                        {{ order_form.phone_number | as crispy_field }}
-                        {{ order_form.country | as crispy_field }}
-                        {{ order_form.postcode | as crispy_field }}
-                        {{ order_form.town_or_city | as crispy_field }}
-                        {{ order_form.street_address1 | as crispy_field }}
-                        {{ order_form.street_address2 | as crispy_field }}
-                        {{ order_form.county | as crispy_field }}
+                        {{ order_form.phone_number | as_crispy_field }}
+                        {{ order_form.country | as_crispy_field }}
+                        {{ order_form.postcode | as_crispy_field }}
+                        {{ order_form.town_or_city | as_crispy_field }}
+                        {{ order_form.street_address1 | as_crispy_field }}
+                        {{ order_form.street_address2 | as_crispy_field }}
+                        {{ order_form.county | as_crispy_field }}
                         <div class="form_check form-check-inline float-right mr-0">
                             {% if user.is_authenticated %}
                                 <label class="form-check-label" for="id-save-info">
@@ -139,7 +145,7 @@
                             <span class="icon">
                                 <i class="fas fa-exclamation-circle"></i>
                             </span>
-                            <span>Your card will be charged <strong>$ {{ order_total|floatformat:0 }}</strong></span>
+                            <span>Your card will be charged <strong>$ {{ total | floatformat:0 }}</strong></span>
                         </p>
                     </div>
                 </form>
