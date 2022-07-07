@@ -29,15 +29,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 
-# TESTING
-# Tutorial integrate Stripe with Django: https://www.geekinsta.com/integrate-stripe-with-django/
-if DEBUG:
-    STRIPE_PUBLISHABLE_KEY = 'test_publishable_key'
-    STRIPE_SECRET_KEY = 'test_secret_key'
-
-
-
-
 ALLOWED_HOSTS = [
     'https://entertainments-r-us.herokuapp.com/',
     'localhost',
@@ -203,3 +194,8 @@ BAG_SESSION_ID = 'bag'  # Shopping-bag
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Stripe
+STRIPE_CURRENCY = 'usd'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
