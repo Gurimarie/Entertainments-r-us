@@ -28,6 +28,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+# TESTING
+# Tutorial integrate Stripe with Django: https://www.geekinsta.com/integrate-stripe-with-django/
+if DEBUG:
+    STRIPE_PUBLISHABLE_KEY = 'test_publishable_key'
+    STRIPE_SECRET_KEY = 'test_secret_key'
+
+
+
+
 ALLOWED_HOSTS = [
     'https://entertainments-r-us.herokuapp.com/',
     'localhost',
