@@ -2,6 +2,7 @@
 import uuid  # used to generate order-number
 from django.db import models
 from django.db.models import Sum
+
 from performances.models import Product
 
 
@@ -27,11 +28,10 @@ class Order(models.Model):
 
     def update_total(self):
         """ update total each time a line atem is added """
-        self.order_total = self.lineitems.aggregate(
-            Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         self.save()
 
-    def save_order_number(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         """
         override default save-method to set the ordernumber,
         if not set already
