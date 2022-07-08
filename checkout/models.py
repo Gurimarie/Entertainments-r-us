@@ -2,7 +2,6 @@
 import uuid  # used to generate order-number
 from django.db import models
 from django.db.models import Sum
-from django.conf import settings
 from performances.models import Product
 
 
@@ -19,8 +18,8 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    order_total = models.DecimalField(
-        max_digits=20, decimal_places=0, null=False, blank=True, default=0)  # temp add blank=True
+    order_total = models.DecimalField(max_digits=20, decimal_places=0,
+                                      null=False, blank=False, default=0)
 
     def _generate_order_number(self):
         """ generate a random and unique ordernumber using UUID """
@@ -32,7 +31,7 @@ class Order(models.Model):
             Sum('lineitem_total'))['lineitem_total__sum'] or 0
         self.save()
 
-    def save(self, *args, **kwargs):
+    def save_order_number(self, *args, **kwargs):
         """
         override default save-method to set the ordernumber,
         if not set already
@@ -47,15 +46,15 @@ class Order(models.Model):
 
 class OrderLineItem(models.Model):
     """ model for each shoppingbag-item """
-    order = models.ForeignKey(
-        Order, null=False, blank=False,
-        related_name='lineitems', on_delete=models.CASCADE)
-    product = models.ForeignKey(
-        Product, null=False, blank=False, on_delete=models.CASCADE)
+    order_number = models.ForeignKey(Order, null=False, blank=False,
+                                     on_delete=models.CASCADE,
+                                     related_name='lineitems')
+    product = models.ForeignKey(Product, null=False, blank=False,
+                                on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(
-        max_digits=10, decimal_places=0, null=False, blank=False,
-        editable=False)
+    lineitem_total = models.DecimalField(max_digits=10, decimal_places=0,
+                                         null=False, blank=False,
+                                         editable=False)
 
     def save(self, *args, **kwargs):
         """
@@ -66,4 +65,4 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Product {self.product.id} on order {self.order.order_number}'
+        return f'Product {self.product} on order {self.order_number}'

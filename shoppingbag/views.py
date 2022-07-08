@@ -20,12 +20,12 @@ def add_to_bag(request, item_id):
     bag = request.session.get('bag', {})  # Get (or create) bag-variable
     if item_id in list(bag.keys()):
         bag[item_id] += quantity    # Add additional item to bag
-        messages.success(
-            request, f'Added another {product.product_name}, {product.artist_id} to your bag')
+        messages.success(request, f'Added another {product.product_name}, \
+                         {product.artist_id} to your bag')
     else:
         bag[item_id] = quantity     # Add item to bag
-        messages.success(
-            request, f'Added {product.product_name}, {product.artist_id} to your bag')
+        messages.success(request, f'Added {product.product_name}, \
+                         {product.artist_id} to your bag')
 
     request.session['bag'] = bag   # Over-write session-bag with updated bag
     return redirect(redirect_url)
@@ -38,8 +38,8 @@ def remove_from_bag(request, item_id):
     bag = request.session.get('bag', {})  # Get bag-variable
     if item_id in list(bag.keys()):
         bag.pop(item_id)                # Remove item from bag-list
-        messages.success(
-            request, f'Removed {product.product_name}, {product.artist_id} from your bag')
+        messages.success(request, f'Removed {product.product_name}, \
+                         {product.artist_id} from your bag')
 
     request.session['bag'] = bag    # Over-write session-bag with updated bag
     return redirect('view_shoppingbag')

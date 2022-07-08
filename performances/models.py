@@ -41,12 +41,12 @@ class Artist(models.Model):
                                                 blank=True)
     artist_description = models.TextField(null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    category = models.ForeignKey(
-        'Category', null=True, on_delete=models.SET_NULL)
-    artist_type = models.ForeignKey(
-        'ArtistType', null=True, on_delete=models.SET_NULL)
-    artist_rating = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
+    category = models.ForeignKey('Category', null=True,
+                                 on_delete=models.SET_NULL)
+    artist_type = models.ForeignKey('ArtistType', null=True,
+                                    on_delete=models.SET_NULL)
+    artist_rating = models.DecimalField(max_digits=6, decimal_places=2,
+                                        null=True, blank=True)
 
     def __str__(self):
         """ Return artist-name instead of artist-id (pk) """
@@ -99,9 +99,9 @@ class Product(models.Model):
         verbose_name_plural = 'Products'
 
     product_name = models.CharField(max_length=200)
-    artist_id = models.ForeignKey(
-        'Artist', on_delete=models.CASCADE, default="0")
-    product_description = models.CharField(
-        max_length=500, null=True, blank=True)
-    price = models.DecimalField(
-        max_digits=10, decimal_places=0, null=True, blank=True)
+    artist_id = models.ForeignKey('Artist', on_delete=models.CASCADE,
+                                  default="0")
+    product_description = models.CharField(max_length=500, null=True,
+                                           blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=0,
+                                null=True, blank=True)

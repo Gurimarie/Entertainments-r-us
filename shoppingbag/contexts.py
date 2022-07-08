@@ -1,4 +1,4 @@
-from django.conf import settings
+""" this code is available in the whole app """
 from django.shortcuts import get_object_or_404
 from performances.models import Product
 
