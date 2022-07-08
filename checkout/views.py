@@ -29,28 +29,22 @@ def checkout(request):
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
         }
+
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save()
             for item_id, quantity in bag.items():
                 # orig. item_data is quantity&size. Not applicable.
-                try:
-                    product = get_object_or_404(Product, pk=item_id)
-                    if isinstance(quantity, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            product=product,
-                            quantity=quantity,
-                        )
-                        order_line_item.save()
-                except Product.DoesNotExist:
-                    messages.error(request, (
-                        "One of the products in your bag wasn't found in our \
-                            database. Please call us for assistance!"
-                    )
-                        # order.delete()
-                        # return redirect(reverse('view_shoppingbag'))
-                    )
+
+                product = Product.objects.get(pk=item_id)
+                # or: product = get_object_or_404(Product, pk=item_id)?
+
+                order_line_item = OrderLineItem(
+                    order=order,
+                    product=product,
+                    quantity=quantity,
+                )
+                order_line_item.save()
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse(
@@ -96,9 +90,7 @@ def checkout_success(request, order_number):
     """ handle successful checkouts """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, f'Order seccessfully processed! \
-        Your order-number is {order_number}. A confirmation-email \
-            will be sent to {order.email}.')
+    messages.success(request, 'Order seccessfully processed!')
 
     if 'bag' in request.session:
         del request.session['bag']
