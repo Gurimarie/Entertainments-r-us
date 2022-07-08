@@ -1,3 +1,7 @@
+body {
+    background-color: red;
+}
+
 .StripeElement,
 .stripe-style-input {
   box-sizing: border-box;
@@ -121,6 +125,16 @@ button:disabled {
     transform-origin: 0px 10.2px;
     -webkit-animation: loading 2s infinite ease;
     animation: loading 2s infinite ease;
+}
+
+select,
+select option {
+    color: black;
+}
+
+select:invalid,
+select option[value=""] {
+    color: grey !important;
 }
 
 #loading-overlay {
