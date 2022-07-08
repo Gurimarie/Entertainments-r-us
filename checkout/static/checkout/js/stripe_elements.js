@@ -1,12 +1,7 @@
-
-
 /* 
 From Boutique Ado Code Institute-project.
 Stripe payments, core logic: 
 https://stripe.com/docs/payments/accept-a-payment
-
-CSS:
-https://stripe.com/docs/payments/elements
 */
 
 
@@ -15,6 +10,7 @@ var clientSecret = $('#id_client_secret').text().slice(1, -1);  // slice to remo
 
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
+
 var card = elements.create('card');
 card.mount('#card-element');
 
@@ -26,8 +22,7 @@ card.addEventListener('change', function (event) {
             <span class="icon" role="alert">
                 <i class="fas fa-times"></i>
             </span>
-            <span>${event.error_message}</span>
-            `;
+            <span>${event.error.message}</span>`;
         $(errorDiv).html(html);
     } else {
         errorDiv.textContent = '';
@@ -39,8 +34,11 @@ var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
     ev.preventDefault();
-    card.update({'disabled': true});
+    card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
+    $('#payment-form').fadeToggle(100);
+    $('#loading-overlay').fadeToggle(100);
+
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
             card: card,
@@ -48,14 +46,16 @@ form.addEventListener('submit', function(ev) {
     }).then(function(result) {
         if (result.error) {
             // show error to your customer
+            var errorDiv = document.getElementById('card-errors');
             var html = `
                 <span class="icon" role="alert">
                     <i class="fas fa-times"></i>
                 </span>
-                <span>${result.error_message}</span>
-            `;
+                <span>${result.error.message}</span>`;
             $(errorDiv).html(html);
-            card.update({'disabled': false});
+            $('#payment-form').fadeToggle(100);
+            $('#loading-overlay').fadeToggle(100);
+            card.update({ 'disabled': false});
             $('#submit-button').attr('disabled', false);
         } else {
             if (result.paymentIntent.status === 'succeeded') {

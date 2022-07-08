@@ -36,7 +36,7 @@ def checkout(request):
             for item_id, quantity in bag.items():
                 # orig. item_data is quantity&size. Not applicable.
 
-                product = Product.objects.get(pk=item_id)
+                product = Product.objects.filter(pk=item_id)
                 # or: product = get_object_or_404(Product, pk=item_id)?
 
                 order_line_item = OrderLineItem(
