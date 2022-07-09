@@ -158,7 +158,18 @@ def artist_product_details(request, pk):
 
 def add_artist_product(request):
     """ add a product to the store """
-    form = ProductForm()
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You successfully added a performance!')
+            return redirect(reverse('add_performance'))
+        else:
+            messages.error(request, 'Failed to add performance. \
+                           Please ensure the form is valid.')
+    else:
+        form = ProductForm()
+
     template = 'artists/add_artist_product.html'
     context = {
         'form': form,
@@ -169,7 +180,18 @@ def add_artist_product(request):
 
 def add_performance(request):
     """ add a product to the store """
-    form = PerformanceForm()
+    if request.method == 'POST':
+        form = PerformanceForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You successfully added a performance!')
+            return redirect(reverse('add_performance'))
+        else:
+            messages.error(request, 'Failed to add performance. \
+                           Please ensure the form is valid.')
+    else:
+        form = PerformanceForm()
+
     template = 'performances/add_performance.html'
     context = {
         'form': form,
@@ -180,7 +202,18 @@ def add_performance(request):
 
 def add_artist(request):
     """ add a product to the store """
-    form = ArtistForm()
+    if request.method == 'POST':
+        form = ArtistForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You successfully added a performance!')
+            return redirect(reverse('add_performance'))
+        else:
+            messages.error(request, 'Failed to add performance. \
+                           Please ensure the form is valid.')
+    else:
+        form = ArtistForm()
+
     template = 'artists/add_artist.html'
     context = {
         'form': form,
