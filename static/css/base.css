@@ -11,13 +11,6 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
-.login-container {
-    padding: 5000;
-    margin-top: 30vh;
-    height: 100vh;
-    background-color: white;
-}
-
 .performance-card,
 .artist-card {
     margin-bottom: 15px;
@@ -157,6 +150,10 @@ a.performance-category-badge > span.badge:hover {
     overflow-y: auto;
 }
 
+.allauth-form-inner-content input {
+    border-color: black;
+    border-radius: 0;
+}
 
 /* -------------------------------- Media Queries */
 
