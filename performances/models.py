@@ -105,3 +105,7 @@ class Product(models.Model):
                                            blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=0,
                                 null=True, blank=True)
+
+    def get_product_name(self):
+        """ Return product-name """
+        return self.product_name
