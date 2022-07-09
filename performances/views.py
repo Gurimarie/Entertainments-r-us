@@ -159,7 +159,7 @@ def artist_product_details(request, pk):
 def add_artist_product(request):
     """ add a product to the store """
     form = ProductForm()
-    template = 'performances/add_artist_product.html'
+    template = 'artists/add_artist_product.html'
     context = {
         'form': form,
     }
@@ -181,7 +181,7 @@ def add_performance(request):
 def add_artist(request):
     """ add a product to the store """
     form = ArtistForm()
-    template = 'performances/add_artist.html'
+    template = 'artists/add_artist.html'
     context = {
         'form': form,
     }
