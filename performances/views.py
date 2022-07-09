@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Performance, Artist, Category, ArtistType, Product
+from .forms import ArtistForm, ProductForm, PerformanceForm
 
 
 def all_performances(request):
@@ -153,3 +154,36 @@ def artist_product_details(request, pk):
     }
 
     return render(request, 'artists/artist_product_details.html', context)
+
+
+def add_artist_product(request):
+    """ add a product to the store """
+    form = ProductForm()
+    template = 'performances/add_artist_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def add_performance(request):
+    """ add a product to the store """
+    form = PerformanceForm()
+    template = 'performances/add_performance.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def add_artist(request):
+    """ add a product to the store """
+    form = ArtistForm()
+    template = 'performances/add_artist.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
