@@ -7,13 +7,13 @@ from django.contrib import messages
 from django.conf import settings
 import stripe
 
-from .forms import OrderForm
-from .models import Order, OrderLineItem
-
 from shoppingbag.contexts import bag_contents
 from performances.models import Product
 from profiles.forms import UserProfileForm
 from profiles.models import UserProfile
+
+from .forms import OrderForm
+from .models import Order, OrderLineItem
 
 
 @require_POST
@@ -113,7 +113,7 @@ def checkout(request):
                     'county': profile.default_county,
                     'country': profile.default_country,
                 })
-            except UserProfile.DoesNotExist:
+            except UserProfile.DoesNotExist:  # pylint-error, but works
                 order_form = OrderForm()
         else:
             order_form = OrderForm()

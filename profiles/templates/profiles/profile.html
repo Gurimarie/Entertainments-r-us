@@ -33,7 +33,7 @@
     </div>
     <div class="row">
         <!-- Addressform with possibility to update address -->
-        <div class="col-12 col-lg-6">
+        <div class="col-10 offset-1 col-lg-5 offset-lg-1">
             <p>Default Delivery Information:</p>
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
@@ -43,7 +43,7 @@
         </div>
 
         <!-- Order History -->
-        <div class="col-12 col-lg-6">
+        <div class="col-10 offset-1 col-lg-5 offset-lg-0 border-grey rounded">
             <p>Order History:</p>
             <div class="order-history table-responsive">
                 <table class="table table-sm table-borderless">
@@ -60,10 +60,10 @@
                             <tr>
                                 <td>
                                     <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
-                                        {{ order.order_number|truncatechars:6 }}
+                                        <small>{{ order.order_number|truncatechars:6 }}</small>
                                     </a>
                                 </td>
-                                <td>{{ order.date }}</td>
+                                <td><small>{{ order.date }}</small></td>
                                 <td>
                                     <ul>
                                         {% for item in order.lineitems.all %}
@@ -73,7 +73,7 @@
                                         {% endfor %}
                                     </ul>
                                 </td>
-                                <td>$ {{ order.total }}</td>
+                                <td><small>$ {{ order.total }}</small></td>
                             </tr>
                         {% endfor %}
                     </table-body>
