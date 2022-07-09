@@ -5,3 +5,8 @@
 .profile-form-input::placeholder {
     color: grey;
 }
+
+.order-history {
+    max-height: 416px; /* height of profile + button */
+    overflow-y: auto;
+}
