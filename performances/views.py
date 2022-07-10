@@ -1,8 +1,10 @@
 """ views for performances-app """
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
+
 from .models import Performance, Artist, Category, ArtistType, Product
 from .forms import ArtistForm, ProductForm, PerformanceForm
 
@@ -119,6 +121,7 @@ def artist_page(request, pk):
     return render(request, 'artists/artist_page.html', context)
 
 
+@login_required
 def artist_details(request, pk):
     """ A view to return the chosen artists detail-page """
 
@@ -145,6 +148,7 @@ def artist_products(request, pk):
     return render(request, 'artists/artist_products.html', context)
 
 
+@login_required
 def artist_product_details(request, pk):
     """ A view to return details for specific product for the chosen artist """
 
@@ -160,8 +164,13 @@ def artist_product_details(request, pk):
 """ Product Management - ADD """
 
 
+@login_required
 def add_artist_product(request):
     """ add a product to the store """
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only the artist can access this.')
+        return redirect(reverse('home'))
+
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -182,8 +191,13 @@ def add_artist_product(request):
     return render(request, template, context)
 
 
+@login_required
 def add_performance(request):
     """ add a product to the store """
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only the artist can access this.')
+        return redirect(reverse('home'))
+        
     if request.method == 'POST':
         form = PerformanceForm(request.POST, request.FILES)
         if form.is_valid():
@@ -204,8 +218,13 @@ def add_performance(request):
     return render(request, template, context)
 
 
+@login_required
 def add_artist(request):
     """ add a product to the store """
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only the artist can access this.')
+        return redirect(reverse('home'))
+        
     if request.method == 'POST':
         form = ArtistForm(request.POST, request.FILES)
         if form.is_valid():
@@ -229,8 +248,13 @@ def add_artist(request):
 """ Product Management - EDIT """
 
 
+@login_required
 def edit_artist_product(request, pk):
     """ edit a product in the store """
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only the artist can access this.')
+        return redirect(reverse('home'))
+        
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -254,8 +278,13 @@ def edit_artist_product(request, pk):
     return render(request, template, context)
 
 
+@login_required
 def edit_performance(request, pk):
     """ edit a performance in the store """
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only the artist can access this.')
+        return redirect(reverse('home'))
+        
     performance = get_object_or_404(Performance, pk=pk)
     if request.method == 'POST':
         form = PerformanceForm(
@@ -281,8 +310,13 @@ def edit_performance(request, pk):
     return render(request, template, context)
 
 
+@login_required
 def edit_artist(request, pk):
     """ edit an artist in the store """
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only the artist can access this.')
+        return redirect(reverse('home'))
+        
     artist = get_object_or_404(Artist, pk=pk)
     if request.method == 'POST':
         form = ArtistForm(request.POST, request.FILES, instance=artist)
@@ -309,24 +343,39 @@ def edit_artist(request, pk):
 """ Product Management - DELETE """
 
 
+@login_required
 def delete_artist_product(request, pk):
     """ edit a product in the store """
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only the artist can access this.')
+        return redirect(reverse('home'))
+        
     product = get_object_or_404(Product, pk=pk)
     product.delete()
     messages.success(request, 'Product deleted.')
     return redirect(reverse('artists'))
 
 
+@login_required
 def delete_performance(request, pk):
     """ edit a performance in the store """
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only the artist can access this.')
+        return redirect(reverse('home'))
+        
     performance = get_object_or_404(Performance, pk=pk)
     performance.delete()
     messages.success(request, 'Performance deleted.')
     return redirect(reverse('performances'))
 
 
+@login_required
 def delete_artist(request, pk):
     """ edit an artist in the store """
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, only the artist can access this.')
+        return redirect(reverse('home'))
+        
     artist = get_object_or_404(Artist, pk=pk)
     artist.delete()
     messages.success(request, 'Artist deleted.')
