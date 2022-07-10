@@ -113,5 +113,6 @@ form.addEventListener('submit', function(ev) {
     }).fail(function () {
         // if error, we reload the page, and the error will be in django messages
         location.reload();
+        print('payment failed...')
     })
 });

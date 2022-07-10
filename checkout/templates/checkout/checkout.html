@@ -117,19 +117,13 @@
                         <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
                         <!-- Display a payment form -->
                         <div class="mb-3" id="card-element">
-                            <form id="payment-form">
-                                <div id="payment-element">
-                                  <!--Stripe.js injects the Payment Element-->
-                                </div>
-                                <button id="submit" class="pay-now-btn">
-                                  <div class="spinner hidden" id="spinner"></div>
-                                  <span id="button-text">Pay now</span>
-                                </button>
-                                <div id="payment-message" class="hidden"></div>
-                              </form>
+
+                            
                         </div>
+                        
                         <!-- Area to display form errors -->
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                        <!-- Pass the client secret to the view to get the payment intent id -->
                         <input type="hidden" value="{{ client_secret }}" name="client-secret">
                     </fieldset>
                     <!-- button-group -->

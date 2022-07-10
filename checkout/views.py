@@ -6,6 +6,7 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 import stripe
+import json
 
 from shoppingbag.contexts import bag_contents
 from performances.models import Product
@@ -30,8 +31,8 @@ def cache_checkout_data(request):
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(
-            request, 'Sorry, your payment cannot be processed now. \
-            Please try again later!')
+            request, ('Sorry, your payment cannot be processed now. \
+            Please try again later!'))
         return HttpResponse(content=e, status=400)
 
 
@@ -65,7 +66,7 @@ def checkout(request):
             for item_id, quantity in bag.items():
                 # orig. item_data is quantity&size. Not applicable.
 
-                product = Product.objects.filter(pk=item_id)
+                product = Product.objects.get(pk=item_id)
                 # or: product = get_object_or_404(Product, pk=item_id)?
 
                 order_line_item = OrderLineItem(
