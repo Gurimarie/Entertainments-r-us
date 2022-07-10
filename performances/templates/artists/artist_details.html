@@ -64,5 +64,16 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="row">
+            {% if request.user.is_staff %}
+                <div class="col-6 text-center">
+                    <a href="{% url 'edit_artist' pk=artist.id %}">Edit</a>
+                </div>
+                <div class="col-6 text-center">
+                    <a class="text-danger" href="{% url 'delete_artist' pk=artist.id %}">Delete</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

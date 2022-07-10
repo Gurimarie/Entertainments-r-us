@@ -62,7 +62,7 @@
 
         <!-- Display performances-area -->
         <div class="row">
-            <div class="col s12 m6 xl4 performances-container offset-m-1">
+            <div class="col s12 m10 performances-container offset-m-1">
                 <div class="row mt-1 mb-2"></div>
                 <div class="row">
                     {% for artist_performance in artist_performances %}
@@ -96,7 +96,24 @@
                                     </div>
                                 </div>
                             </div>
+                            {% if request.user.is_staff %}
+                                <hr class="my-0">
+                                <div class="row my-0">
+                                    <div class="col-6 text-center">
+                                        <small>
+                                            <a href="{% url 'edit_performance' pk=artist_performance.id %}">Edit</a>
+                                        </small>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <small>
+                                            <a class="text-danger" href="{% url 'delete_performance' pk=artist_performance.id %}">Delete</a>
+                                        </small>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
+                        
+
                     </div>
                     {% endfor %}
                 </div>

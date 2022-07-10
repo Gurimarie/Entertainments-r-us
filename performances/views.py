@@ -43,7 +43,8 @@ def all_performances(request):
             query = request.GET['q']
             if not query:
                 messages.error(
-                        request, "You didn't enter any search criteria! Redirect to all performances.")
+                        request, "You didn't enter any search criteria! \
+                        Redirect to all performances.")
                 return redirect(reverse('performances'))
 
             queries = Q(performance_title__icontains=query) | Q(
@@ -156,14 +157,17 @@ def artist_product_details(request, pk):
     return render(request, 'artists/artist_product_details.html', context)
 
 
+""" Product Management - ADD """
+
+
 def add_artist_product(request):
     """ add a product to the store """
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You successfully added a performance!')
-            return redirect(reverse('add_performance'))
+            messages.success(request, 'You successfully added a product!')
+            return redirect(reverse('add_artist_product'))
         else:
             messages.error(request, 'Failed to add performance. \
                            Please ensure the form is valid.')
@@ -222,6 +226,9 @@ def add_artist(request):
     return render(request, template, context)
 
 
+""" Product Management - EDIT """
+
+
 def edit_artist_product(request, pk):
     """ edit a product in the store """
     product = get_object_or_404(Product, pk=pk)
@@ -251,7 +258,8 @@ def edit_performance(request, pk):
     """ edit a performance in the store """
     performance = get_object_or_404(Performance, pk=pk)
     if request.method == 'POST':
-        form = PerformanceForm(request.POST, request.FILES, instance=performance)
+        form = PerformanceForm(
+            request.POST, request.FILES, instance=performance)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated performance!')
@@ -261,7 +269,8 @@ def edit_performance(request, pk):
                            Please ensure the form is valid.')
     else:
         form = PerformanceForm(instance=performance)
-        messages.info(request, f'You are editing {performance.performance_title}')
+        messages.info(
+            request, f'You are editing {performance.performance_title}')
 
     template = 'performances/edit_performance.html'
     context = {
@@ -279,7 +288,7 @@ def edit_artist(request, pk):
         form = ArtistForm(request.POST, request.FILES, instance=artist)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully updated product!')
+            messages.success(request, 'Successfully updated artist!')
             return redirect(reverse('artist_details', args=[pk]))
         else:
             messages.error(request, 'Failed to update artist. \
@@ -295,3 +304,30 @@ def edit_artist(request, pk):
     }
 
     return render(request, template, context)
+
+
+""" Product Management - DELETE """
+
+
+def delete_artist_product(request, pk):
+    """ edit a product in the store """
+    product = get_object_or_404(Product, pk=pk)
+    product.delete()
+    messages.success(request, 'Product deleted.')
+    return redirect(reverse('artists'))
+
+
+def delete_performance(request, pk):
+    """ edit a performance in the store """
+    performance = get_object_or_404(Performance, pk=pk)
+    performance.delete()
+    messages.success(request, 'Performance deleted.')
+    return redirect(reverse('performances'))
+
+
+def delete_artist(request, pk):
+    """ edit an artist in the store """
+    artist = get_object_or_404(Artist, pk=pk)
+    artist.delete()
+    messages.success(request, 'Artist deleted.')
+    return redirect(reverse('artists'))

@@ -24,4 +24,9 @@ urlpatterns = [
          name="edit_performance"),
     path('edit_artist_product/<int:pk>/', views.edit_artist_product,
          name="edit_artist_product"),
+    path('delete_artist/<int:pk>/', views.delete_artist, name="delete_artist"),
+    path('delete_performance/<int:pk>/', views.delete_performance,
+         name="delete_performance"),
+    path('delete_artist_product/<int:pk>/', views.delete_artist_product,
+         name="delete_artist_product"),
 ]
