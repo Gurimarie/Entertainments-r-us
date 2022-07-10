@@ -7,7 +7,7 @@ I was hoping to get at least the first page deployed and working for this assign
 
 ![Picture of different view-port-displays]()
 
-Click here to view the website
+Click [here](https://entertainments-r-us.herokuapp.com/) to view the website
 
 ## User Experience (UX)
 ### User stories:
@@ -52,32 +52,54 @@ The main goal for the site-owner is to make live entertainment more accessible a
 
 ## Features
 
-- Feature 1 included
-- Feature 2 included
-- Feature 3 included
+- Ability to browse artists/performances and to buy products either logged in or not.
+- Ability to add products to shoppingbag and go to secure checkout to pay through stripe.
+- A login-feature with profile-page for each user.
+- Order-history and form to update shipping-info available on profile-page for logged-in users.
+- Users that have "staff-user"-rights (between customer and superuser) can add, edit and delete artists, performances and products. This is the usertype used by the artists offering their services on the website, so that they can add new performances and edit info as they wish, without having to go through a website-admin.
+- Users can search for keywords in performances-name and description, and get the related performance.
+- Users may choose to see only artist of a particular type (choir or bands for instance), og to see performances of a certain genre (f.ex. jazz). Or to sort performances by artist, or artists by artist-rating, etc
+- When you sort by a category, a box with the chosen genre is shown under the page-title, to inform the user of what choice has been made.
+- How many results the page has, is shown descretely on the right side of the page.
+- The main-nav buttons for "All artists" and for "All performances" have a direct link on the button to a page with all the instances, but also have a dropdown-menu on the side, to see the page sorted by for ex. by name or by artist.
 
 
 #### Future features:
-- Possibility to search directly in subcategories, for instance for a particular song (only see artists who has a video or audio of them doing that song)
-- Possible future feature 2 not yet included
+- The search-function currently only searches through titles and descriptions in the performances-model. The search will in the future also include artists, categories, artisttypes etc. to span all the information contained in the website.
+- There will also be a possibility to sort artists by how much their cheapest and most costly products are (price low-high and high-low), and to sort performances by how many views they have had.
+- Currently all the users with "artist-user-type" (staff) has access to delete and edit all the performances, artists and products on the website. They should naturally only be able to add, edit and delete items regarding their own artist (or artists). The plan is to add a owner-field to the artist-model, so that only the user that creates an artist has the right to edit that artist an all performances and products related to that artist.
+
 
 ## Issues overcome
 ### Challenge with link from "all performances"-page to "artist-page"
 There is a difficulty retreiving the django-artist.id at the all performances-page in order to link to the individual artist-page, because the performances-class only had the artist_id-filed, and not the actual artist-id. The artist-page-view takes primary key artist.id (an integer) as input, but when retrieving the artist_id from "all performances"-page, it comes up as Artist: Artist object (6), instead of as 6. Whith sting-method on Artist-class "return self.artist_name" it comes up as the artist_name ex. Lucia Popp. Neither option works in the url and view for artist-page. The issue is not overcome yet, but will (hopefully) be solved eventually.
 
+### Overlay doesn't cover the home-page background-image
+I tried so many things to fix the overlay-div that did not cover the page underneath. Working with css and html, but nothing made any difference. In the end, the problem was solved super-simply, by removing two classes from the overlay-div (100% and container). 
+![Picture of non_covering_overlay](static/readme_pictures/Bug-overlay_doesnt_cover_homepage_image.PNG)
+
+### Links to edit and delete should not be clicked by accident
+The edit and delete-links were at first so small and so close together, and also close to other links, that they could very easily be clicked by accident. The problem was sorted in a few different ways, by adding some distance to orther links, and by adding a horisontal line between these links at the bottom, and the rest of the content.
+![Picture of edit and delete-links](static/readme_pictures/Edit_and_delete.PNG)
+
 ## Technology used
 ### Programming languages:
 - html
 - css
+- js
+- python
+- github
+- Heroku
+- Postgres database
 - 
 
 ### Frameworks, libraries and programs:
-- Materialize CSS
+- Bootstrap
 - Google Fonts
 - Font-awsome
-- Django
-- Heroku
-- Postgres database
+- Django (incl. django-allauth, dj-database-url, django-crispy-forms)
+- Werkzeug
+- stripe payments
 
 
 ## Testing
@@ -126,7 +148,7 @@ The problem turned out to be some missing migrations that did not go through bec
 
 
 ## Deployment
-This project was developed using Gitpod, committed to git and pushed to GitHub using git-extensions in Gitpod. Attepted deployd throug Heroku, but not yet successful.
+This project was developed using Gitpod, committed to git and pushed to GitHub using git-extensions in Gitpod. Attepted deployd through Heroku, but not yet successful.
 
 ### Steps to deploy this page on Heroku from GitHub repository:
 
