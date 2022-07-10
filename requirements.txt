@@ -6,8 +6,10 @@ django-allauth==0.41.0
 django-countries==7.3.2
 django-crispy-forms==1.14.0
 Flask==2.1.2
+gunicorn==20.1.0
 itsdangerous==2.1.2
 oauthlib==3.2.0
+psycopg2-binary==2.9.3
 pylint-django==2.5.3
 pylint-plugin-utils==0.7
 python3-openid==3.2.0

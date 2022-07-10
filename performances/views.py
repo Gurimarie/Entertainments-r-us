@@ -82,7 +82,7 @@ def all_artists(request):
             if sort_key == 'name':  # artist_name instead of just name?
                 sort_key = 'lower_name'
                 artists = artists.annotate(lower_name=Lower('name'))
-      
+
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
@@ -197,7 +197,7 @@ def add_performance(request):
     if not request.user.is_staff:
         messages.error(request, 'Sorry, only the artist can access this.')
         return redirect(reverse('home'))
-        
+
     if request.method == 'POST':
         form = PerformanceForm(request.POST, request.FILES)
         if form.is_valid():
@@ -224,7 +224,7 @@ def add_artist(request):
     if not request.user.is_staff:
         messages.error(request, 'Sorry, only the artist can access this.')
         return redirect(reverse('home'))
-        
+
     if request.method == 'POST':
         form = ArtistForm(request.POST, request.FILES)
         if form.is_valid():
@@ -254,7 +254,7 @@ def edit_artist_product(request, pk):
     if not request.user.is_staff:
         messages.error(request, 'Sorry, only the artist can access this.')
         return redirect(reverse('home'))
-        
+
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -284,7 +284,7 @@ def edit_performance(request, pk):
     if not request.user.is_staff:
         messages.error(request, 'Sorry, only the artist can access this.')
         return redirect(reverse('home'))
-        
+
     performance = get_object_or_404(Performance, pk=pk)
     if request.method == 'POST':
         form = PerformanceForm(
@@ -316,7 +316,7 @@ def edit_artist(request, pk):
     if not request.user.is_staff:
         messages.error(request, 'Sorry, only the artist can access this.')
         return redirect(reverse('home'))
-        
+
     artist = get_object_or_404(Artist, pk=pk)
     if request.method == 'POST':
         form = ArtistForm(request.POST, request.FILES, instance=artist)
@@ -349,7 +349,7 @@ def delete_artist_product(request, pk):
     if not request.user.is_staff:
         messages.error(request, 'Sorry, only the artist can access this.')
         return redirect(reverse('home'))
-        
+
     product = get_object_or_404(Product, pk=pk)
     product.delete()
     messages.success(request, 'Product deleted.')
@@ -362,7 +362,7 @@ def delete_performance(request, pk):
     if not request.user.is_staff:
         messages.error(request, 'Sorry, only the artist can access this.')
         return redirect(reverse('home'))
-        
+
     performance = get_object_or_404(Performance, pk=pk)
     performance.delete()
     messages.success(request, 'Performance deleted.')
@@ -375,7 +375,7 @@ def delete_artist(request, pk):
     if not request.user.is_staff:
         messages.error(request, 'Sorry, only the artist can access this.')
         return redirect(reverse('home'))
-        
+
     artist = get_object_or_404(Artist, pk=pk)
     artist.delete()
     messages.success(request, 'Artist deleted.')
