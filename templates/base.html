@@ -84,8 +84,11 @@
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_staff %}
                                     <a href="{% url 'add_artist' %}" class="dropdown-item">Add artist</a>
+                                    <a href="{% url 'edit_artist' %}" class="dropdown-item">Edit artist</a>
                                     <a href="{% url 'add_performance' %}" class="dropdown-item">Add Performance</a>
+                                    <a href="{% url 'edit_performance' %}" class="dropdown-item">Edit Performance</a>
                                     <a href="{% url 'add_artist_product' %}" class="dropdown-item">Add Product</a>
+                                    <a href="{% url 'edit_artist_product' %}" class="dropdown-item">Edit Product</a>
                                 {% endif %}
                                 <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>

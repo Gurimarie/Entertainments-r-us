@@ -220,3 +220,78 @@ def add_artist(request):
     }
 
     return render(request, template, context)
+
+
+def edit_artist_product(request, pk):
+    """ edit a product in the store """
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated product!')
+            return redirect(reverse('artist_product_details', args=[pk]))
+        else:
+            messages.error(request, 'Failed to update product. \
+                           Please ensure the form is valid.')
+    else:
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.product_name}')
+
+    template = 'artists/edit_artist_product.html'
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, template, context)
+
+
+def edit_performance(request, pk):
+    """ edit a performance in the store """
+    performance = get_object_or_404(Performance, pk=pk)
+    if request.method == 'POST':
+        form = PerformanceForm(request.POST, request.FILES, instance=performance)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated performance!')
+            return redirect(reverse('performances'))
+        else:
+            messages.error(request, 'Failed to update performance. \
+                           Please ensure the form is valid.')
+    else:
+        form = PerformanceForm(instance=performance)
+        messages.info(request, f'You are editing {performance.performance_title}')
+
+    template = 'performances/edit_performance.html'
+    context = {
+        'form': form,
+        'performance': performance,
+    }
+
+    return render(request, template, context)
+
+
+def edit_artist(request, pk):
+    """ edit an artist in the store """
+    artist = get_object_or_404(Artist, pk=pk)
+    if request.method == 'POST':
+        form = ArtistForm(request.POST, request.FILES, instance=artist)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated product!')
+            return redirect(reverse('artist_details', args=[pk]))
+        else:
+            messages.error(request, 'Failed to update artist. \
+                           Please ensure the form is valid.')
+    else:
+        form = ArtistForm(instance=artist)
+        messages.info(request, f'You are editing {artist.artist_name}')
+
+    template = 'artists/edit_artist.html'
+    context = {
+        'form': form,
+        'artist': artist,
+    }
+
+    return render(request, template, context)

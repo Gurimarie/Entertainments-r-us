@@ -19,4 +19,9 @@ urlpatterns = [
     path('add_performance/', views.add_performance, name="add_performance"),
     path('add_artist_product/', views.add_artist_product,
          name="add_artist_product"),
+    path('edit_artist/<int:pk>/', views.edit_artist, name="edit_artist"),
+    path('edit_performance/<int:pk>/', views.edit_performance,
+         name="edit_performance"),
+    path('edit_artist_product/<int:pk>/', views.edit_artist_product,
+         name="edit_artist_product"),
 ]
