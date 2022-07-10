@@ -4,9 +4,7 @@
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
-            <div class="col">
-
-            </div>
+            <div class="col"></div>
         </div>
     </div>
 {% endblock %}
@@ -28,30 +26,11 @@
                 <hr class="w-50 mb-1">
             </div>
         </div>
-        <!-- Page-filter from Boutique Ado-project -->
+        <!-- Page-filter, mini -->
         <div class="artists-container offset-1">
             <div class="row mt-1 mb-2">
                 <div class="col-12 col-md-6 my-auto d-flex justify-content-center justify-content-md-end">
                     <div class="sort-select-wrapper w-50">
-                        <!-- Error: "Cannot resolve keyword 'name' into field. Choices are: Artist_name, artist_type, id, category etc..."
-                        Need to fix the keywords here and in views for the filter to work. 
-                        Comment out for now, and get back to it later...
-                        <select id="sort-selector"
-                            class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort
-                                by...</option>
-                            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name
-                                (A - Z)</option>
-                            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>
-                                Name (Z - A)</option>
-                            <option value="artist_types_asc"
-                                {% if current_sorting == 'artist_type_asc' %}selected{% endif %}>Artist Types (A - Z)
-                            </option>
-                            <option value="artist_types_desc"
-                                {% if current_sorting == 'artist_type_desc' %}selected{% endif %}>Artist Types (Z - A)
-                            </option>
-                        </select>
-                        -->
                         <p class="text-muted mt-3 text-center text-md-left">
                             <div>
                                 {% if search_term or current_categories or current_sorting != 'None_None' %}
@@ -59,8 +38,7 @@
                                 {% endif %}
                             </div>
                             <div>
-                                {{ artists|length }} Artists found{% if current_artist_types %} for  
-                                <strong>"{{ current_artist_types }}"</strong>{% endif %}
+                                {{ artists|length }} Artists found
                             </div>
                         </p>
                     </div>
@@ -69,9 +47,9 @@
             </div>
         </div>
         <!-- Display-area -->
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="row d-flex justify-content-around">
             {% for artist in artists %}
-                <div class=" artist-card col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                <div class="artist-card col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-black">
                         <!-- Image-section -->
                         {% if artist.image_url %}
@@ -114,7 +92,8 @@
                 </div>
             {% endfor %}
         </div>
-        <!-- "Back to top"-button from Boutique Ado-project -->
+        <!-- "Back to top"-button, from school-project Boutique Ado
+          (https://github.com/Code-Institute-Solutions/boutique_ado_v1) -->
         <div class="btt-button shadow-sm rounded-0 border border-black">
             <a class="btt-link d-flex h-100">
                 <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
@@ -130,27 +109,23 @@
         $('#sort-selector').change(function() {
             var selector = $(this);
             var currentUrl = new URL(window.location);
-
             var selectedVal = selector.val();
             if(selectedVal != "reset"){
                 var sort = selectedVal.split("_")[0];
                 var direction = selectedVal.split("_")[1];
-
                 currentUrl.searchParams.set("sort", sort);
                 currentUrl.searchParams.set("direction", direction);
-
                 window.location.replace(currentUrl);
             } else {
                 currentUrl.searchParams.delete("sort");
                 currentUrl.searchParams.delete("direction");
-
                 window.location.replace(currentUrl);
             }
         })
      </script>
 
-
-     <!-- "Back to top"-button from Boutique Ado-project -->
+     <!-- "Back to top"-button, from school-project Boutique Ado
+        (https://github.com/Code-Institute-Solutions/boutique_ado_v1) -->
      <script type="text/javascript">
         $('.btt-link').click(function(e) {
             window.scrollTo(0,0)

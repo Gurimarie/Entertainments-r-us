@@ -82,7 +82,7 @@ def all_artists(request):
             if sort_key == 'name':  # artist_name instead of just name?
                 sort_key = 'lower_name'
                 artists = artists.annotate(lower_name=Lower('name'))
-
+      
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
@@ -94,7 +94,7 @@ def all_artists(request):
             artists = artists.filter(
                 artist_type__artist_type_name__in=artist_types)
             artist_types = ArtistType.objects.filter(
-                                artist_type_name__in=artist_types)
+                artist_type_name__in=artist_types)
 
     current_sorting = f'{sort}_{direction}'
 

@@ -3,13 +3,10 @@
 {% load shoppingbag_tools %}
 {% load crispy_forms_tags %}
 
-
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
     <!-- Something wrong with this link? Don't think it works...-->
 {% endblock %}
-
-
 
 {% block page_header %}
     <div class="container header-container">
@@ -31,8 +28,6 @@
                 <hr>
             </div>
         </div>
-
-        
         <div class="row">
             <!-- Order-summary (on right side on large screens) -->
             <div class="col-12 col-lg-6 order-lg-last mb-5">
@@ -133,12 +128,10 @@
                                 <div id="payment-message" class="hidden"></div>
                               </form>
                         </div>
-
                         <!-- Area to display form errors -->
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                         <input type="hidden" value="{{ client_secret }}" name="client-secret">
                     </fieldset>
-
                     <!-- button-group -->
                     <div class="submit-button mt-5 mb-2 text-left">
                         <!-- back to shoppingbag -->

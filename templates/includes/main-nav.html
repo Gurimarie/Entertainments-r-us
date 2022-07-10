@@ -12,9 +12,6 @@
                 <div class="dropdown-menu border-0" aria-labelledby="all-artists-link">
                     <a href="{% url 'artists' %}?sort=artist_name&direction=asc" class="dropdown-item">By Name</a>
                     <a href="{% url 'artists' %}?sort=artist_rating&direction=desc" class="dropdown-item">By Rating</a>
-                    <a href="" class="dropdown-item">By Most Viewed</a>
-                    <a href="" class="dropdown-item">By Price (high-low)</a>
-                    <a href="" class="dropdown-item">By Price (low-high)</a>
                 </div>
             </div>
         </li>
@@ -31,7 +28,6 @@
                 <div class="dropdown-menu border-0" aria-labelledby="all-performances-link">
                     <a href="{% url 'performances' %}?sort=performance_title&direction=asc" class="dropdown-item">By Title</a>
                     <a href="{% url 'performances' %}?sort=artist_id&direction=asc" class="dropdown-item">By Artist</a>
-                    <a href="" class="dropdown-item">By Most Viewed</a>
                 </div>
             </div>
         </li>
@@ -68,20 +64,6 @@
                 <a href="{% url 'artists' %}?artist_type=Solo" class="dropdown-item">Solo</a>
                 <a href="{% url 'artists' %}?artist_type=Other" class="dropdown-item">Other</a>
             </div>
-        </li>
-        <!-- Users favourites -->
-        <li class="nav-item">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="favourites-link"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                My favourites
-            </a>
-        </li>
-        <!-- Previously viewed -->
-        <li class="nav-item">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="previously-viewed-link"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Previously Viewed
-            </a>
         </li>
     </ul>
 </div>

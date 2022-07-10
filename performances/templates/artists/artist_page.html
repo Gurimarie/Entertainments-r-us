@@ -59,15 +59,14 @@
                 </div>
             </div>
         </div>
-
         <!-- Display performances-area -->
         <div class="row">
             <div class="col s12 m10 performances-container offset-m-1">
                 <div class="row mt-1 mb-2"></div>
-                <div class="row">
+                <div class="row d-flex justify-content-around">
                     {% for artist_performance in artist_performances %}
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card h-100 border-2">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card h-100 border-black">
                             <!-- Video-section -->
                             {% if artist_performance.video_url %}
                             <a href="">
@@ -112,8 +111,6 @@
                                 </div>
                             {% endif %}
                         </div>
-                        
-
                     </div>
                     {% endfor %}
                 </div>

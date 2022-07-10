@@ -2,13 +2,10 @@
 {% load static %}
 {% load shoppingbag_tools %}
 
-
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
-            <div class="col">
-
-            </div>
+            <div class="col"></div>
         </div>
     </div>
 {% endblock %}
@@ -25,7 +22,6 @@
                 <hr>
             </div>
         </div>
-
         <!-- Bag-content -->
         <div class="table-responsive rounded d-block">
                 {% if bag_items %}
@@ -90,7 +86,6 @@
 
 {% block postload_js %}
 {{ block.super }}
-
     <script type="text/javascript">
         // Remove item and reload page on click
         $('.remove-item').click(function(e) {

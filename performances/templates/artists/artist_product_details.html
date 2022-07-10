@@ -24,8 +24,6 @@
                 </div>
             </div>
         </div>
-
-
         <!-- Page-title -->
         <div class="row h-100">
             <div class="col text-center mt-3">
@@ -33,7 +31,6 @@
                 <hr class="w-50 mb-1">
             </div>
         </div>
-
         <!-- Display-area -->
         <div class="row text-center">
             <div class="col-8 col-md-6 col-lg-4 offset-2 offset-md-3 offset-lg-4">
@@ -53,8 +50,8 @@
                                 <div class="col mb-0 text-right">$ {{ product.price }}</div>
                             </div>
                         </div>
-
-                        <!-- Form to buy product, from Boutique Ado-project -->
+                        <!-- Form to buy product, from school-project Boutique Ado
+                         (https://github.com/Code-Institute-Solutions/boutique_ado_v1) -->
                         <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                             {% csrf_token %}
                             <!-- Django cross-site request-forgery-protection -->
