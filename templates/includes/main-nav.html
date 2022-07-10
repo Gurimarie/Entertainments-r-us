@@ -1,17 +1,34 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
         <!-- All Artists-dropdown -->
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-artists-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                All Artists
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-artists-link">
-                <a href="" class="dropdown-item">By Name</a>
-                <a href="" class="dropdown-item">By Rating</a>
-                <a href="" class="dropdown-item">By Most Viewed</a>
-                <a href="" class="dropdown-item">By Price (high-low)</a>
-                <a href="" class="dropdown-item">By Price (low-high)</a>
-                <a href="" class="dropdown-item">All Artists Random</a>
+        <!-- Split dropdown from https://mdbootstrap.com/docs/standard/components/dropdowns/ -->
+        <li class="nav-item">
+            <div class="btn-group mr-5">
+                <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'artists' %}">
+                    All Artists
+                </a>
+                <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="all-artists-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu border-0" aria-labelledby="all-artists-link">
+                    <a href="{% url 'artists' %}?sort=artist_name&direction=asc" class="dropdown-item">By Name</a>
+                    <a href="{% url 'artists' %}?sort=artist_rating&direction=desc" class="dropdown-item">By Rating</a>
+                </div>
+            </div>
+        </li>
+        <!-- All performances-dropdown -->
+        <!-- Split dropdown from https://mdbootstrap.com/docs/standard/components/dropdowns/ -->
+        <li class="nav-item">
+            <div class="btn-group mr-5">
+                <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'performances' %}">
+                    All Performances
+                </a>
+                <button type="button" class="btn dropdown dropdown-toggle dropdown-toggle-split"
+                    id="all-performances-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu border-0" aria-labelledby="all-performances-link">
+                    <a href="{% url 'performances' %}?sort=performance_title&direction=asc" class="dropdown-item">By Title</a>
+                    <a href="{% url 'performances' %}?sort=artist_id&direction=asc" class="dropdown-item">By Artist</a>
+                </div>
             </div>
         </li>
         <!-- Category-dropdown -->
@@ -20,16 +37,16 @@
                 Category
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="category-link">
-                <a href="" class="dropdown-item">Blues</a>
-                <a href="" class="dropdown-item">Classical -instrumental</a>
-                <a href="" class="dropdown-item">Classical -voice</a>
-                <a href="" class="dropdown-item">Folk</a>
-                <a href="" class="dropdown-item">Heavy-metal</a>
-                <a href="" class="dropdown-item">Jazz</a>
-                <a href="" class="dropdown-item">Musical/Showtunes</a>
-                <a href="" class="dropdown-item">Pop</a>
-                <a href="" class="dropdown-item">Rock</a>
-                <a href="" class="dropdown-item">Other</a>
+                <a href="{% url 'performances' %}?category=Blues" class="dropdown-item">Blues</a>
+                <a href="{% url 'performances' %}?category=Classical -instrumental" class="dropdown-item">Classical -instrumental</a>
+                <a href="{% url 'performances' %}?category=Classical -voice" class="dropdown-item">Classical -voice</a>
+                <a href="{% url 'performances' %}?category=Folk" class="dropdown-item">Folk</a>
+                <a href="{% url 'performances' %}?category=Heavy-metal" class="dropdown-item">Heavy-metal</a>
+                <a href="{% url 'performances' %}?category=Jazz" class="dropdown-item">Jazz</a>
+                <a href="{% url 'performances' %}?category=Musical/Showtunes" class="dropdown-item">Musical/Showtunes</a>
+                <a href="{% url 'performances' %}?category=Pop" class="dropdown-item">Pop</a>
+                <a href="{% url 'performances' %}?category=Rock" class="dropdown-item">Rock</a>
+                <a href="{% url 'performances' %}?category=Other" class="dropdown-item">Other</a>
             </div>
         </li>
         <!-- Artist-type-dropdown -->
@@ -38,24 +55,15 @@
                 Artist-type
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="artist-type-link">
-                <a href="" class="dropdown-item">Band</a>
-                <a href="" class="dropdown-item">Choir</a>
-                <a href="" class="dropdown-item">Group</a>
-                <a href="" class="dropdown-item">Solo</a>
-                <a href="" class="dropdown-item">Other</a>
+                {% for artisttype in artist_types %}
+                    <a href="{% url 'artists' %}?artist_type=artisttype" class="dropdown-item">{{ 'artisttype' }}</a>
+                {% endfor %}
+                <a href="{% url 'artists' %}?artist_type=Band" class="dropdown-item">Band</a>
+                <a href="{% url 'artists' %}?artist_type=Choir" class="dropdown-item">Choir</a>
+                <a href="{% url 'artists' %}?artist_type=Group" class="dropdown-item">Group</a>
+                <a href="{% url 'artists' %}?artist_type=Solo" class="dropdown-item">Solo</a>
+                <a href="{% url 'artists' %}?artist_type=Other" class="dropdown-item">Other</a>
             </div>
         </li>
-            <!-- Users favourites -->
-            <li class="nav-item">
-                <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="favourites-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    My favourites
-                </a>
-            </li>
-            <!-- Previously viewed -->
-            <li class="nav-item">
-                <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="previously-viewed-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Previously Viewed
-                </a>
-            </li>
     </ul>
 </div>

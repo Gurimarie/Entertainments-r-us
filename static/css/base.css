@@ -11,11 +11,9 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
-.login-container {
-    padding: 5000;
-    margin-top: 30vh;
-    height: 100vh;
-    background-color: white;
+.performance-card,
+.artist-card {
+    margin-bottom: 15px;
 }
 
 /* CSS from Boutique Ado-project, Code Institute */
@@ -59,6 +57,12 @@ body {
     color: white;
 }
 
+a.artist-type-badge > span.badge:hover,
+a.performance-category-badge > span.badge:hover {
+    background: #222 !important;
+    color: white !important;
+}
+
 .text-black {
     color: #000 !important;
 }
@@ -67,6 +71,8 @@ body {
     border: 1px solid black !important;
 }
 
+
+/* background */
 .overlay {
     height: 100%;
     width: 100%;
@@ -75,6 +81,79 @@ body {
     position: fixed;
     background: white;
     z-index: -1;
+}
+
+
+/* CSS for "Back to top"-button from Boutique Ado-project */
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btt-link {
+    cursor: pointer;
+}
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+/* from css-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+  position: absolute;
+  top: -10px;
+  right: 36px;
+}
+
+/* Convenience classes -colors copied from Bootstrap */
+.arrow-primary {
+    border-bottom-color: #007bff !important;
+}
+
+.arrow-success {
+    border-bottom-color: #28a745 !important;
+}
+
+.arrow-danger {
+    border-bottom-color: #dc3545 !important;
+}
+
+.arrow-warning {
+    border-bottom-color: #ffc107 !important;
+}
+
+.arrow-info {
+    border-bottom-color: #17a2b8 !important;
+}
+
+.bag-notification-wrapper {
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.allauth-form-inner-content input {
+    border-color: black;
+    border-radius: 0;
 }
 
 /* -------------------------------- Media Queries */
@@ -99,5 +178,16 @@ body {
     /* push the body down beneath the main page header */
     .header-container {
         padding-top: 164px;
+    }
+}
+
+/* push the body down beneath the main page header on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
     }
 }

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!-- White background -->
+    <div class="overlay"></div>
+    <div class="container-fluid">
+        <!-- Links to other pages -->
+        <div class="row h-100">
+            <div class="card-action">
+                <div>
+                    <a href="{% url 'artists' %}">Back to all artists</a>
+                </div>
+                <div>
+                    <a href="{% url 'artist_products' pk=product.artist_id.id %}">Back to all products</a>
+                </div>
+            </div>
+        </div>
+        <!-- Page-title -->
+        <div class="row h-100">
+            <div class="col text-center mt-3">
+                <h2 class="logo-font">{{ product.product_name}}<br>with<br>{{ product.artist_id }}</h2>
+                <hr class="w-50 mb-1">
+            </div>
+        </div>
+        <!-- Display-area -->
+        <div class="row text-center">
+            <div class="col-8 col-md-6 col-lg-4 offset-2 offset-md-3 offset-lg-4">
+                <div class="artist-container">
+                    <div class="mt-3">
+                        <!-- Name and info-section -->
+                        <div class="bg-white pt-0 border-0 text-center">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mb-0 text-left">Description:</p>
+                                    <p class="mb-0 text-left">{{ product.product_description}}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col mb-0 text-left">Price:</div>
+                                <div class="col mb-0 text-right">$ {{ product.price }}</div>
+                            </div>
+                        </div>
+                        <!-- Form to buy product, from school-project Boutique Ado
+                         (https://github.com/Code-Institute-Solutions/boutique_ado_v1) -->
+                        <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                            {% csrf_token %}
+                            <!-- Django cross-site request-forgery-protection -->
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <p class="mt-3"><strong>Quantity:</strong></p>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control qty_input text-center" type="number" name="quantity"
+                                                value="1" min="1" max="10" data-item_id="{{ product.id }}"
+                                                id="id_qty_{{ product.id }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <input type="submit" class="btn btn-black rounded-0 text-uppercase"
+                                        value="Add to bag">
+                                </div>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            </div>
+                        </form>
+                    </div>
+                    {% if request.user.is_staff %}
+                        <hr>
+                        <div class="row"></div>
+                            <small class="ml-3">
+                                <a href="{% url 'edit_artist_product' pk=product.id %}">Edit</a>
+                                <a class="text-danger" href="{% url 'delete_artist_product' pk=product.id %}">Delete</a>
+                            </small>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

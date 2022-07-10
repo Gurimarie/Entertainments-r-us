@@ -1,20 +1,24 @@
+""" admin-file for performances """
 from django.contrib import admin
-from .models import Category, ArtistType, Performances, Artists
+from .models import Category, ArtistType, Performance, Artist, Product
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    """ list what fields to show in the admin """
     list_display = (
-        'category_name'
+        'category_name',
     )
 
 
 class ArtistTypeAdmin(admin.ModelAdmin):
+    """ list what fields to show in the admin """
     list_display = (
-        'artist_type_name'
+        'artist_type_name',
     )
 
 
-class PerformancesAdmin(admin.ModelAdmin):
+class PerformanceAdmin(admin.ModelAdmin):
+    """ list what fields to show in the admin """
     list_display = (
         'artist_id',
         'performance_title',
@@ -25,7 +29,8 @@ class PerformancesAdmin(admin.ModelAdmin):
     )
 
 
-class ArtistsAdmin(admin.ModelAdmin):
+class ArtistAdmin(admin.ModelAdmin):
+    """ list what fields to show in the admin """
     list_display = (
         'artist_name',
         'artist_description',
@@ -35,7 +40,18 @@ class ArtistsAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(Category)
-admin.site.register(ArtistType)
-admin.site.register(Performances)
-admin.site.register(Artists)
+class ProductAdmin(admin.ModelAdmin):
+    """ list what fields to show in the admin """
+    list_display = (
+        'artist_id',
+        'product_name',
+        'product_description',
+        'price',
+    )
+
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(ArtistType, ArtistTypeAdmin)
+admin.site.register(Performance, PerformanceAdmin)
+admin.site.register(Artist, ArtistAdmin)
+admin.site.register(Product, ProductAdmin)

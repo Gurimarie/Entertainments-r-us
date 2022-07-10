@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!-- White background -->
+    <div class="overlay"></div>
+    <div class="container">
+        <!-- Page-title -->
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <hr>
+                <h2 class="logo-font">Product Management</h2>
+                <h5 class="logo-font">Edit a product</h5>
+                <hr class=" mb-4">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <form method="POST" action="{% url 'edit_artist_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="text-right">
+                    <a class="btn btn-outline-black rounded" href="{% url 'artists' %}">Cancel</a>
+                    <button class="btn btn-black rounded" type="submit">Update Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

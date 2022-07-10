@@ -7,7 +7,7 @@
         </div>
     </a>
     <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
-        <form class="form" method="GET" action="">
+        <form class="form" method="GET" action="{% url 'performances' %}">
             <div class="input-group w-100">
                 <input class="form-control border border-black rounded-0" type="text" name="q"
                     placeholder="Search our site">
@@ -33,10 +33,14 @@
     </a>
     <div class="dropdown-menu border-0" aria-labelledby="user-options">
         {% if request.user.is_authenticated %}
-            {% if request.user.is_superuser %}
-                <a href="" class="dropdown-item">Site Management</a>
+            {% if request.user.is_staff %}
+                <small>Product Management:</small>
+                <a href="{% url 'add_artist' %}" class="dropdown-item">Add artist</a>
+                <a href="{% url 'add_performance' %}" class="dropdown-item">Add Performance</a>
+                <a href="{% url 'add_artist_product' %}" class="dropdown-item">Add Product</a>
+                <hr>
             {% endif %}
-                <a href="" class="dropdown-item">My Profile</a>
+                <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
             {% else %}
                 <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
@@ -47,7 +51,7 @@
 
 <!-- Shopping-bag-link -->
 <li class="list-inline-item">
-    <a href="" class="text-black nav-link d-block d-lg-none" ref="#" id="shopping-bag-link">
+    <a href="{% url 'view_shoppingbag' %}" class="text-black nav-link d-block d-lg-none" ref="#" id="shopping-bag-link">
         <div class="text-center"><i class="fas fa-shopping-bag fa-lg"></i></div>
     </a>
 </li>

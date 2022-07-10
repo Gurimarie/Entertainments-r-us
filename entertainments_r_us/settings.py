@@ -26,10 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
 
 ALLOWED_HOSTS = [
-    'https://entertainments-r-us.herokuapp.com/', 
+    'https://entertainments-r-us.herokuapp.com/',
     'localhost',
     'entertainments-r-us.herokuapp.com',
 ]
@@ -50,7 +51,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'performances',
-    'products',
+    'shoppingbag',
+    'checkout',
+    'profiles',
+
+    # other
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +70,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'entertainments_r_us.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -79,12 +87,20 @@ TEMPLATES = [
                 'django.template.context_processors.request',   # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+                'shoppingbag.contexts.bag_contents',
+            ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
             ],
         },
     },
 ]
 
 # From https://django-allauth.readthedocs.io/en/latest/installation.html
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 AUTHENTICATION_BACKENDS = [
@@ -101,7 +117,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # temp changed from 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
@@ -173,8 +189,16 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+BAG_SESSION_ID = 'bag'  # Shopping-bag
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Stripe
+STRIPE_CURRENCY = 'usd'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+DEFAULT_FROM_EMAIL = 'post@entertainments.com'

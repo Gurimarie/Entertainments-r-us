@@ -4,40 +4,119 @@
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
-            <div class="col">
-
-            </div>
+            <div class="col"></div>
         </div>
     </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100 overlay">
+    <!-- White background -->
+    <div class="overlay"></div>
+    <div class="container-fluid">
+        <!-- Page-title and badge with category (if chosen) -->
         <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                {{ performances }}
-                
+            <div class="col-12 text-center mt-3">
+                <h2 class="logo-font">Performances</h2>
+                {% for c in current_categories %}
+                <a class="performance-category-badge text-decoration-none"
+                    href="{% url 'performances' %}?category={{ c.category_name }}">
+                    <span
+                        class="p-2 mt-2 badge badge-white text-black rounded-0 border border-black">{{ c.category_name }}</span>
+                </a>
+                {% endfor %}
+                <hr class="w-50 mb-1">
             </div>
         </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col s12 m6 xl4
-            {% for performance in performances %}">
-            <div class="card">
-                <div class="card-image">
-                <img src="images/sample-1.jpg">
-                <span class="card-title">{{ performances.performance_name}}</span>
+        <!-- Page-filter, mini -->
+        <div class="row mt-1 mb-2">
+            <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                <div class="sort-select-wrapper w-50">
+                    <p class="text-muted mt-3 text-center text-md-left">
+                        <!-- Link to "All performances" of filter is in use -->
+                        <div>
+                            {% if search_term or current_categories or current_sorting != 'None_None' %}
+                                <span class="small"><a href="{% url 'performances' %}">Performances Home</a></span>
+                            {% endif %}
+                        </div>
+                        <!-- Number of results returned -->
+                        <div>
+                            <span>{{ performances|length }} Performances found
+                                {% if search_term %} 
+                                    for <strong>"{{ search_term }}"</strong>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </p>
                 </div>
-                <div class="card-content">
-                <p>{{ performances.performance_description}}</p>
-                </div>
-                <div class="card-action">
-                <a href="#">This is a link</a>
+            </div>
+            <div class="col-12 col-md-6 order-md-first"></div>
+        </div>
+        <!-- Display performances-area -->
+        <div class="row d-flex justify-content-around">
+            {% for performance in performances %}
+            <div class="performance-card col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                <div class="card h-100 border-black"> <!---->
+                    <!-- Video-section -->
+                    {% if performance.video_url %}
+                        <!-- Bootstrap iframe https://mdbootstrap.com/docs/standard/extended/video/ -->
+                        <iframe src="{{ performance.video_url }}" title="YouTube video"
+                                alt="{{ performance.performance_title }}" allowfullscreen>
+                        </iframe>
+                    {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                                alt="{{ performance.performance_title }}">
+                        </a>
+                    {% endif %}
+                    <!-- Info-section -->
+                    <div class="card-body pb-0">
+                        <a href="{% url 'artist_page1' pk=performance.artist_id.id %}">
+                            <p class="lead mb-0 font-weight-bold">{{ performance.artist_id }}</p>
+                        </a>
+                    </div>
+                    <div class="card-body pb-0">
+                        <a href="{{ performance.video_url }}" target="_blank">
+                            <p class="lead mb-0 font-weight-bold">{{ performance.performance_title }}</p>
+                        </a>
+                        <hr>
+                    </div>
+                    <div class="card-footer bg-white pt-0 border-0 text-left">
+                        <div class="row">
+                            <div class="col">
+                                <p class="mb-0 text-left">{{ performance.performance_description }}</p>
+                                <hr>
+                                {% if performance.composer %}
+                                    <p class="mb-0 text-left">Composer: {{ performance.composer }}</p>
+                                {% endif %}
+                                <p class="mb-0 text-left">Category: {{ performance.category }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Link to artist-page -->
+                    <div class="card-action text-center">
+                        <a href="{% url 'artist_page1' pk=performance.artist_id.id %}">Go to artist-page</a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
         </div>
+        <!-- "Back to top"-button, from school-project Boutique Ado
+            (https://github.com/Code-Institute-Solutions/boutique_ado_v1) -->
+        <div class="btt-button shadow-sm rounded-0 border border-black">
+            <a class="btt-link d-flex h-100">
+                <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+            </a>
+        </div>
     </div>
+{% endblock %}
+
+{% block postload_js %}
+     {{ block.super }}
+     <!-- "Back to top"-button, from school-project Boutique Ado
+        (https://github.com/Code-Institute-Solutions/boutique_ado_v1) -->
+     <script type="text/javascript">
+        $('.btt-link').click(function(e) {
+            window.scrollTo(0,0)
+        })
+     </script>
 {% endblock %}

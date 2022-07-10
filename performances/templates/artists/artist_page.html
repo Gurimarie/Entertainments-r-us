@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!-- White background -->
+    <div class="overlay"></div>
+    <div class="container-fluid">
+        <!-- Page-title -->
+        <div class="row h-100">
+            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+                <h2 class="logo-font">{{ artist.artist_name }}</h2>
+                <hr class="w-50 mb-1">
+                <!-- Artist-image -->
+                <div class="image-container my-5">
+                    {% if artist.image_url %}
+                        <a href="{% url 'artist_details' pk=artist.id %}">
+                            <img class="card-img-top img-fluid" src="{{ artist.image_url }}" alt="{{ artist.artist_name }}">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'artist_details' pk=artist.id %}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ artist.artist_name }}">
+                        </a>
+                    {% endif %}
+                </div>
+                <!-- Artist-info -->
+                <div class="card-footer bg-white pt-0 border-0 text-left">
+                    <div class="row">
+                        <div class="col">
+                            <p class="mb-0 text-left">{{ artist.artist_description_short }}</p>
+                            <p class="mb-0 text-left">Category: {{ artist.category }}</p>
+                            {% if artist.artist_rating %}
+                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ artist.artist_rating }} / 5</small>
+                            {% else %}
+                                <small class="text-muted">No rating</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Links to other pages -->
+            <div class="col">
+                <div class="row">
+                    <div class="card-action">
+                        <a href="{% url 'artist_products' pk=artist.id %}">Buy a performance from {{ artist.artist_name }}</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card-action">
+                        <a href="{% url 'artist_details' pk=artist.id %}">See more info about {{ artist.artist_name }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Display performances-area -->
+        <div class="row">
+            <div class="col s12 m10 performances-container offset-m-1">
+                <div class="row mt-1 mb-2"></div>
+                <div class="row d-flex justify-content-around">
+                    {% for artist_performance in artist_performances %}
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card h-100 border-black">
+                            <!-- Video-section -->
+                            {% if artist_performance.video_url %}
+                            <a href="">
+                                <video class="card-img-top img-fluid" src="{{ artist_performance.video_url }}" alt="{{ performance.performance_title }}" style="width: 18rem;"></video>
+                            </a>
+                            {% else %}
+                            <a href="">
+                                <ing class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ performance.performance_title }}">
+                            </a>
+                            {% endif %}
+                            <!-- Info-section -->
+                            <div class="card-body pb-0">
+                               <p class="lead mb-0 font-weight-bold">{{ artist_performance.artist_id }}</p>
+                           </div>
+                            <div class="card-body pb-0">
+                                <p class="lead mb-0 font-weight-bold">{{ artist_performance.performance_title }}</p>
+                            </div>
+                            <div class="card-footer bg-white pt-0 border-0 text-left">
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="mb-0 text-left">{{ artist_performance.performance_description }}</p>
+                                        {% if artist_performance.composer %}
+                                           <small class="text-muted">Composer: {{ artist_performance.composer }}</small>
+                                        {% endif %}
+                                        <p class="mb-0 text-left">{{ artist_performance.category }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if request.user.is_staff %}
+                                <hr class="my-0">
+                                <div class="row my-0">
+                                    <div class="col-6 text-center">
+                                        <small>
+                                            <a href="{% url 'edit_performance' pk=artist_performance.id %}">Edit</a>
+                                        </small>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <small>
+                                            <a class="text-danger" href="{% url 'delete_performance' pk=artist_performance.id %}">Delete</a>
+                                        </small>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

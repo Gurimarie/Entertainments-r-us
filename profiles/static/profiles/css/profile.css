@@ -1,0 +1,16 @@
+.profile-form-input .form-control {
+    color: black;
+}
+
+.profile-form-input::placeholder {
+    color: grey;
+}
+
+.order-history {
+    max-height: 416px; /* height of profile + button */
+    overflow-y: auto;
+}
+
+.border-grey {
+    border: 1px solid rgb(184, 181, 181) !important;
+}
