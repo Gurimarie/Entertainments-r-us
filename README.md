@@ -40,11 +40,15 @@ The main goal for the site-owner is to make live entertainment more accessible a
 
 ### Typography:
 ....
-
-![Picture of fonts samples]()
+font-family: 'Nunito', sans-serif;
+![Picture of font Nunito](static/readme_pictures/Font-Nunito-sans.PNG )
+Ref. https://www.figma.com/; the "Nunito is a well balanced sans-serif typeface created by Vernon Adams. Its a rounded terminal sans-serif font for display that pairs well with Alegreya, Lora, Open Sans, and Roboto."
+https://www.figma.com/google-fonts/nunito-font-pairings/
+I like it for this project because it is light, without being flimsy, and I feel it's the perfect blend between serious and joyful, for this project. It is certainly well-readable, but the rounded bends, on the f and the t and the l makes it seem a bit playful, almost like it's doing it's own thing, and not quite bending to everyone elses needs, and I think that suits this app. Trustworthy, but still playful and happy :) 
 
 ### Imagery:
-
+Backgroundimage home-page  
+https://image.shutterstock.com/image-photo/showman-young-male-entertainer-presenter-600w-1062295226.jpg (gratis i prøveperiode)
 
 ## Wireframes
 
@@ -56,7 +60,7 @@ The main goal for the site-owner is to make live entertainment more accessible a
 - Ability to add products to shoppingbag and go to secure checkout to pay through stripe.
 - A login-feature with profile-page for each user.
 - Order-history and form to update shipping-info available on profile-page for logged-in users.
-- Users that have "staff-user"-rights (between customer and superuser) can add, edit and delete artists, performances and products. This is the usertype used by the artists offering their services on the website, so that they can add new performances and edit info as they wish, without having to go through a website-admin.
+- Users that have "staff-user"-rights (between customer and superuser) can add, edit and delete artists, performances and products. This is the usertype used by the artists offering their services on the website, so that they can add new performances and edit info as they wish, without having to go through a website-admin. Link to add_ pages are in the dropdown under the login-button on the top-nav (only visible for logged in users with usertype staff or superuser). Link to edit and delete artists are on the bottom of the artist_detail-page, for artists, they are at the bottom of each performance-card on the artist_page, and for products, they are on the bottom of the card in the artist_product_detail-page.
 - Users can search for keywords in performances-name and description, and get the related performance.
 - Users may choose to see only artist of a particular type (choir or bands for instance), og to see performances of a certain genre (f.ex. jazz). Or to sort performances by artist, or artists by artist-rating, etc
 - When you sort by a category, a box with the chosen genre is shown under the page-title, to inform the user of what choice has been made.
@@ -74,13 +78,12 @@ The main goal for the site-owner is to make live entertainment more accessible a
 ### Challenge with link from "all performances"-page to "artist-page"
 There is a difficulty retreiving the django-artist.id at the all performances-page in order to link to the individual artist-page, because the performances-class only had the artist_id-filed, and not the actual artist-id. The artist-page-view takes primary key artist.id (an integer) as input, but when retrieving the artist_id from "all performances"-page, it comes up as Artist: Artist object (6), instead of as 6. Whith sting-method on Artist-class "return self.artist_name" it comes up as the artist_name ex. Lucia Popp. Neither option works in the url and view for artist-page. The issue is not overcome yet, but will (hopefully) be solved eventually.
 
-### Overlay doesn't cover the home-page background-image
-I tried so many things to fix the overlay-div that did not cover the page underneath. Working with css and html, but nothing made any difference. In the end, the problem was solved super-simply, by removing two classes from the overlay-div (100% and container). 
-![Picture of non_covering_overlay](static/readme_pictures/Bug-overlay_doesnt_cover_homepage_image.PNG)
-
 ### Links to edit and delete should not be clicked by accident
 The edit and delete-links were at first so small and so close together, and also close to other links, that they could very easily be clicked by accident. The problem was sorted in a few different ways, by adding some distance to orther links, and by adding a horisontal line between these links at the bottom, and the rest of the content.
 ![Picture of edit and delete-links](static/readme_pictures/Edit_and_delete.PNG)
+
+### Problem with Stripe payments
+When pressing the pay now-button, seemingly nothing happens. Not on the UI-side. Stipe gets a message of a failed payment, so something is registering. Error message says the problem in in viuws.py line 62, 
 
 ## Technology used
 ### Programming languages:
@@ -125,6 +128,7 @@ Testing: do Y
 Result: The site did not respond due to ..."A" or: the site acted as expected and did X
 Fix: Did Z to the code because of problem..."A"
 
+
 ### Fixed bugs:
 #### Bug 1
 ![Picture of problem]()
@@ -139,8 +143,14 @@ Problem missing fields in artist-admin and performance-admin. Artist name and se
 The problem turned out to be some missing migrations that did not go through because of missing info in required fields. After temporary adding "default='MISSING'" to the required fields (artist_name, performance_name and artist_id), the migrations went through, and the correct fields are showing in the admin. The default-value has been removed again, so that input is required on new entries.
 ![Picture fixed](static/readme_pictures/Artist_admin_missing_fields4.JPG)
 
-#### Bug 3
+#### Bug 3 Overlay doesn't cover the home-page background-image
+I tried so many things to fix the overlay-div that did not cover the page underneath. Working with css and html, but nothing made any difference. In the end, the problem was solved super-simply, by removing two classes from the overlay-div (100% and container). 
+![Picture of non_covering_overlay](static/readme_pictures/Overlay_doesnt_cover_homepage_image1.png)
+
+
+#### Bug 4
 ![Picture of problem]()
+
 
 
 ### Unfixed bugs:
@@ -148,7 +158,16 @@ The problem turned out to be some missing migrations that did not go through bec
 
 
 ## Deployment
-This project was developed using Gitpod, committed to git and pushed to GitHub using git-extensions in Gitpod. Attepted deployd through Heroku, but not yet successful.
+This project was created from a github-repository-template, and developed using Gitpod. It was regularily committed to git and pushed to GitHub using git-extensions in Gitpod. It has been deployd to postgres relational database through Heroku, and the media and static-files are hosted on AWS (Amazon Web Services). I use S3 (simple storage solution), 
+To deploy: 
+* First sign in to Heroku and choose to create a new app, with name similar to the project in Git. Go to the Resources-tab, and find the add-on for Postgres database (Heroku Postgres) (the free plan is sufficient). *
+* Before using Postgres, go back to gitpod and install dj_database_url and psycopg2-binary (python3 install ...), and freeze the requirements (pip3 freeze > requirements.txt).
+* Go to settings.py and add install Heroku database (import dj_database_url at the top and comment out the default "DATABASES"-settings, and add   DATABASES = {'default': dj_database_url.parse{}}   instead. For now you may add the DATABASE_URL from Heroku (find it at Heroku-Settings-Reveal Config Vars) into this, but make sure to NOT commit to git whis this key visible! Save it in the settings at Gitpod Dashboard (under your profile) as soon as possible. 
+* Connect to Heroku through the terminal (heroku logon -i) and to stop Heroku from uploading the statis-files with the database (since they are going to be deployd on AWS), use command  "$ heroku config:set DISABLE_COLLECTSTATIC=1".
+* Then migrate as usual (no need to makemigrations, as they are already ready). 
+* Create Procfile, and go to Heroku to add deployment through GitHub.
+* Create a user on AWS Amazon, create a bucket and a user (staticfilesuser).
+
 
 ### Steps to deploy this page on Heroku from GitHub repository:
 
@@ -168,12 +187,12 @@ Type git clone, and then paste the URL you copied earlier. It will look like thi
 ## Credits
 
 ### Code:
-
 - https://github.com/PaulFrankling/discover-north-yorks used for README-structure.
-- In setting up this project I have followed closely the run-through-project "Project Boutique Ado" in the Code Institute courses.
+- In setting up this project I have followed closely the sequence of the run-through-project "Project Boutique Ado" in the Code Institute courses. The structure and scope of my database is different from the one in the school-project, and therefore my models and views and forms are also different, but mostly only when the difference in structure demanded it. 
 
 ### Content:
 
 ### Media used:
+Images for "artists" from https://pikwizard.com/ ("Free Stock Photos")
 
 ### Acknowledgements:
