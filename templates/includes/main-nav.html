@@ -4,12 +4,12 @@
         <!-- Split dropdown from https://mdbootstrap.com/docs/standard/components/dropdowns/ -->
         <li class="nav-item">
             <div class="btn-group mr-5">
-                <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'artists' %}">
+                <a class="logo-font-white font-weight-bold nav-link" href="{% url 'artists' %}">
                     All Artists
                 </a>
                 <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="all-artists-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
-                <div class="dropdown-menu border-0" aria-labelledby="all-artists-link">
+                <div class="dropdown-menu border border-black" aria-labelledby="all-artists-link">
                     <a href="{% url 'artists' %}?sort=artist_name&direction=asc" class="dropdown-item">By Name</a>
                     <a href="{% url 'artists' %}?sort=artist_rating&direction=desc" class="dropdown-item">By Rating</a>
                 </div>
@@ -19,13 +19,13 @@
         <!-- Split dropdown from https://mdbootstrap.com/docs/standard/components/dropdowns/ -->
         <li class="nav-item">
             <div class="btn-group mr-5">
-                <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'performances' %}">
+                <a class="logo-font-white font-weight-bold nav-link text-black" href="{% url 'performances' %}">
                     All Performances
                 </a>
                 <button type="button" class="btn dropdown dropdown-toggle dropdown-toggle-split"
                     id="all-performances-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </button>
-                <div class="dropdown-menu border-0" aria-labelledby="all-performances-link">
+                <div class="dropdown-menu border border-black" aria-labelledby="all-performances-link">
                     <a href="{% url 'performances' %}?sort=performance_title&direction=asc" class="dropdown-item">By Title</a>
                     <a href="{% url 'performances' %}?sort=artist_id&direction=asc" class="dropdown-item">By Artist</a>
                 </div>
@@ -33,10 +33,10 @@
         </li>
         <!-- Category-dropdown -->
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="category-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font-white font-weight-bold nav-link text-black mr-5" href="#" id="category-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Category
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="category-link">
+            <div class="dropdown-menu border border-black" aria-labelledby="category-link">
                 <a href="{% url 'performances' %}?category=Blues" class="dropdown-item">Blues</a>
                 <a href="{% url 'performances' %}?category=Classical -instrumental" class="dropdown-item">Classical -instrumental</a>
                 <a href="{% url 'performances' %}?category=Classical -voice" class="dropdown-item">Classical -voice</a>
@@ -51,10 +51,10 @@
         </li>
         <!-- Artist-type-dropdown -->
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="artist-type-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font-white font-weight-bold nav-link text-black mr-5" href="#" id="artist-type-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Artist-type
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="artist-type-link">
+            <div class="dropdown-menu border border-black" aria-labelledby="artist-type-link">
                 {% for artisttype in artist_types %}
                     <a href="{% url 'artists' %}?artist_type=artisttype" class="dropdown-item">{{ 'artisttype' }}</a>
                 {% endfor %}

@@ -8,7 +8,6 @@ html {
 
 .text-white {
     color: rgb(228, 226, 224);
-    font-family: 'Nunito', sans-serif;
 }
 
 .border-black {
@@ -49,6 +48,10 @@ body {
     color: rgb(228, 226, 224);
 }
 
+.text-red {
+    color: #dc3545;
+}
+
 /* The logo will take up no more space than what the text requires */
 .main-logo-link {
     width: fit-content;
@@ -63,6 +66,11 @@ body {
 .btn-black {
     background: black;
     color: white;
+}
+
+.btn-white {
+    background: white;
+    color: black;
 }
 
 .search-artists-button:hover,
