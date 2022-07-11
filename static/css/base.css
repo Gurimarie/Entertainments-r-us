@@ -82,8 +82,8 @@ body {
 .btn-white:hover,
 .btn-white:active,
 .btn-white:focus {
-    background: white;
-    color: #222;
+    background: rgb(206, 205, 205);
+    color: black;
 }
 
 a.artist-type-badge > span.badge:hover,
@@ -100,7 +100,7 @@ a.performance-category-badge > span.badge:hover {
     top: 0;
     left: 0;
     position: fixed;
-    background: rgb(202, 201, 201);
+    background: rgb(224, 223, 223);
     z-index: -1;
 }
 
