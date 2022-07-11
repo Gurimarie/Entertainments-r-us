@@ -19,7 +19,7 @@ body {
     background-color: rgb(54, 56, 56);
     background-size: cover;
     height: calc(100vh - 164px);
-    color: #555;
+    color: white;
     font-family: 'Nunito', sans-serif;
 }
 
@@ -46,10 +46,6 @@ body {
 .logo-font-white {
     text-transform: uppercase;
     color: rgb(228, 226, 224);
-}
-
-.text-red {
-    color: #dc3545;
 }
 
 /* The logo will take up no more space than what the text requires */
@@ -97,7 +93,7 @@ a.performance-category-badge > span.badge:hover {
     top: 0;
     left: 0;
     position: fixed;
-    background: rgb(87, 78, 78);
+    background: rgb(202, 201, 201);
     z-index: -1;
 }
 

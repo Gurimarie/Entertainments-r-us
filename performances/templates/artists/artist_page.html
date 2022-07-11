@@ -47,14 +47,18 @@
             </div>
             <!-- Links to other pages -->
             <div class="col">
-                <div class="row">
+                <div class="row mb-4">
                     <div class="card-action">
-                        <a href="{% url 'artist_products' pk=artist.id %}">Buy a performance from {{ artist.artist_name }}</a>
+                        <a href="{% url 'artist_products' pk=artist.id %}">
+                            <button class="btn-white w-100">Buy a performance from {{ artist.artist_name }}</button>
+                        </a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="card-action">
-                        <a href="{% url 'artist_details' pk=artist.id %}">See more info about {{ artist.artist_name }}</a>
+                        <a href="{% url 'artist_details' pk=artist.id %}">
+                            <button class="btn-black w-100">See more info about {{ artist.artist_name }}</button>
+                        </a>
                     </div>
                 </div>
             </div>
