@@ -100,8 +100,9 @@ a.performance-category-badge > span.badge:hover {
     top: 0;
     left: 0;
     position: fixed;
-    background: rgb(224, 223, 223);
+    background: rgb(158, 157, 157);
     z-index: -1;
+    color: #000;
 }
 
 
