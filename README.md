@@ -5,7 +5,7 @@ This project is only just begun, and I have used instructions from the Code Inst
 
 I was hoping to get at least the first page deployed and working for this assignment deadline, but sadly I have not been able to fix my bug(s) in time, so I have to submit as it is.
 
-![Picture of different view-port-displays]()
+![Picture of different view-port-displays](static/readme_pictures/different-view-port-displays.PNG)
 
 Click [here](https://entertainments-r-us.herokuapp.com/) to view the website
 
@@ -35,28 +35,25 @@ The main goal for the site-owner is to make live entertainment more accessible a
 ## Design
 
 ### Colour scheme:
-....
-![Picture of colour scheme]()
+The colours are kept quite neutral. As there may be many different colours in the pictures and videos the artists add to the page, it is best for the background to be a bit toned down. The artists are the ones who should be the senter of attention, not the website in itself. 
 
 ### Typography:
-....
-font-family: 'Nunito', sans-serif;
+Font-family: 'Nunito', sans-serif.
 ![Picture of font Nunito](static/readme_pictures/Font-Nunito-sans.PNG )
 Ref. https://www.figma.com/; the "Nunito is a well balanced sans-serif typeface created by Vernon Adams. Its a rounded terminal sans-serif font for display that pairs well with Alegreya, Lora, Open Sans, and Roboto."
 https://www.figma.com/google-fonts/nunito-font-pairings/
 I like it for this project because it is light, without being flimsy, and I feel it's the perfect blend between serious and joyful, for this project. It is certainly well-readable, but the rounded bends, on the f and the t and the l makes it seem a bit playful, almost like it's doing it's own thing, and not quite bending to everyone elses needs, and I think that suits this app. Trustworthy, but still playful and happy :) 
 
 ### Imagery:
-Backgroundimage home-page  
-https://image.shutterstock.com/image-photo/showman-young-male-entertainer-presenter-600w-1062295226.jpg (gratis i prøveperiode)
-
-## Wireframes
+The backgroundimage for the home-page is meant to be a gesture to invite people in to the website. The image is from Shutterstock. 
+https://image.shutterstock.com/image-photo/showman-young-male-entertainer-presenter-600w-1062295226.jpg 
 
 
 
 ## Features
 
-- Ability to browse artists/performances and to buy products either logged in or not.
+- Ability to browse artists/performances and to buy products 
+- Some of the pages, like the artists-details (more info) are only availabe if you are logged in.
 - Ability to add products to shoppingbag and go to secure checkout to pay through stripe.
 - A login-feature with profile-page for each user.
 - Order-history and form to update shipping-info available on profile-page for logged-in users.
@@ -71,30 +68,29 @@ https://image.shutterstock.com/image-photo/showman-young-male-entertainer-presen
 #### Future features:
 - The search-function currently only searches through titles and descriptions in the performances-model. The search will in the future also include artists, categories, artisttypes etc. to span all the information contained in the website.
 - There will also be a possibility to sort artists by how much their cheapest and most costly products are (price low-high and high-low), and to sort performances by how many views they have had.
-- Currently all the users with "artist-user-type" (staff) has access to delete and edit all the performances, artists and products on the website. They should naturally only be able to add, edit and delete items regarding their own artist (or artists). The plan is to add a owner-field to the artist-model, so that only the user that creates an artist has the right to edit that artist an all performances and products related to that artist.
-
+- Currently all the users with "artist-user-type" (staff) has access to delete and edit all the performances, artists and products on the website. They should naturally only be able to add, edit and delete items regarding their own artist (or artists). The plan is to add a owner-field to the artist-model, so that only the user that creates an artist has the right to edit that artist and all performances and products related to that artist.
+- Artist ratings are now entered when you add a new artist, but this will in the future be something coming from customer-replies, and not from the artist themselves.
 
 ## Issues overcome
 ### Challenge with link from "all performances"-page to "artist-page"
-There is a difficulty retreiving the django-artist.id at the all performances-page in order to link to the individual artist-page, because the performances-class only had the artist_id-filed, and not the actual artist-id. The artist-page-view takes primary key artist.id (an integer) as input, but when retrieving the artist_id from "all performances"-page, it comes up as Artist: Artist object (6), instead of as 6. Whith sting-method on Artist-class "return self.artist_name" it comes up as the artist_name ex. Lucia Popp. Neither option works in the url and view for artist-page. The issue is not overcome yet, but will (hopefully) be solved eventually.
+There is a difficulty retreiving the django-artist.id at the all performances-page in order to link to the individual artist-page, because the performances-class only had the artist_id-field, and not the actual artist-id. The artist-page-view takes primary key artist.id (an integer) as input, but when retrieving the artist_id from "all performances"-page, it comes up as Artist: Artist object (6), instead of as 6. Whith sting-method on Artist-class "return self.artist_name" it comes up as the artist_name ex. Lucia Popp. Neither option works in the url and view for artist-page. The issue was solved by correct dotnotation.
 
 ### Links to edit and delete should not be clicked by accident
 The edit and delete-links were at first so small and so close together, and also close to other links, that they could very easily be clicked by accident. The problem was sorted in a few different ways, by adding some distance to orther links, and by adding a horisontal line between these links at the bottom, and the rest of the content.
 ![Picture of edit and delete-links](static/readme_pictures/Edit_and_delete.PNG)
 
-### Problem with Stripe payments
-When pressing the pay now-button, seemingly nothing happens. Not on the UI-side. Stipe gets a message of a failed payment, so something is registering. Error message says the problem in in viuws.py line 62, 
+
 
 ## Technology used
 ### Programming languages:
-- html
-- css
-- js
-- python
-- github
+- HTML
+- CSS
+- JS
+- Python
+- Github
 - Heroku
 - Postgres database
-- 
+- AWS Amazon Web Services
 
 ### Frameworks, libraries and programs:
 - Bootstrap
@@ -102,31 +98,27 @@ When pressing the pay now-button, seemingly nothing happens. Not on the UI-side.
 - Font-awsome
 - Django (incl. django-allauth, dj-database-url, django-crispy-forms)
 - Werkzeug
-- stripe payments
+- Stripe payments
 
 
 ## Testing
 
 ### Validation:
-HTML validation
-CSS validation
-JS validation
+
+#### CSS validation
+CSS-files checked with https://jigsaw.w3.org/css-validator/validator, and all is well.
+
+#### JS validation, with https://jshint.com/
+Some semicolons were missing, that are now fixed.
 
 
 ### Testing for user stories in UX-section:
+Everything has been tested, and I've checked that all links are working. The only big problem is when you try to pay for an order, and then the page gets a server-error-message. I have not been able to fix that.
 
 ### Further testing:
-#### Test on different screen sizes:
-Expected: X when Y
-Testing: do Y
-Result: The site did not respond due to ..."A" or: the site acted as expected and did X
-Fix: Did Z to the code because of problem..."A"
 
 #### Test on different browsers:
-Expected: X when Y
-Testing: do Y
-Result: The site did not respond due to ..."A" or: the site acted as expected and did X
-Fix: Did Z to the code because of problem..."A"
+The site has been tested on chrome and on Firefox, and functions on both, but on Firefox the text is white for some reason. May just be a delay in updating?
 
 
 ### Fixed bugs:
@@ -148,12 +140,12 @@ I tried so many things to fix the overlay-div that did not cover the page undern
 ![Picture of non_covering_overlay](static/readme_pictures/Overlay_doesnt_cover_homepage_image1.png)
 
 
-#### Bug 4
-![Picture of problem]()
-
 
 
 ### Unfixed bugs:
+### Problem with Stripe payments
+When pressing the complete order-button, to pay for the order, there is a pause while the payment is processes, but then there is an error that brings up the Server-error-blank screen. In Stipe it seems to be working, and many "payments" have been received, but there are some problems with the webhooks. I have not yet been able to solve this problem, so when the server-error occurs, the only we to keep moving is unfortunately to press the back-button. Error message says the problem in in views.py line 63, but I cannot find what is wrong there. 
+
 
 
 
@@ -166,7 +158,8 @@ To deploy:
 * Connect to Heroku through the terminal (heroku logon -i) and to stop Heroku from uploading the statis-files with the database (since they are going to be deployd on AWS), use command  "$ heroku config:set DISABLE_COLLECTSTATIC=1".
 * Then migrate as usual (no need to makemigrations, as they are already ready). 
 * Create Procfile, and go to Heroku to add deployment through GitHub.
-* Create a user on AWS Amazon, create a bucket and a user (staticfilesuser).
+* Create a user on AWS Amazon, create a bucket and a user (staticfilesuser). Add the credentials to Heroku.
+* Allow Heroku to collect staticfiles by DISABLE_COLLECTSTATIC=0
 
 
 ### Steps to deploy this page on Heroku from GitHub repository:
@@ -179,20 +172,15 @@ On GitHub.com, navigate to your fork, open it, and click the Code-button.
 Choose your preferred way of cloning the repository (HTTPS, SSH or Github CLI), and then open Git Bash. Change the current working directory to the location where you want the cloned directory.
 Type git clone, and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME: "$ git clone https://github.com/YOUR-USERNAME/Entertainments-r-us". Press Enter. Your local clone will be created.
 
-### Making a local clone:
-
-
-
 
 ## Credits
 
 ### Code:
 - https://github.com/PaulFrankling/discover-north-yorks used for README-structure.
-- In setting up this project I have followed closely the sequence of the run-through-project "Project Boutique Ado" in the Code Institute courses. The structure and scope of my database is different from the one in the school-project, and therefore my models and views and forms are also different, but mostly only when the difference in structure demanded it. 
+- In setting up this project I have followed closely the sequence of the run-through-project "Project Boutique Ado" in the Code Institute courses. The structure and scope of my database is different from the one in the school-project, and therefore my models and views and forms are also different. 
 
 ### Content:
 
 ### Media used:
 Images for "artists" from https://pikwizard.com/ ("Free Stock Photos")
 
-### Acknowledgements:

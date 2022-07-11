@@ -53,7 +53,7 @@ form.addEventListener('submit', function(ev) {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
         'save_info': saveInfo,
-    }
+    };
     var url = '/checkout/cache_checkout_data/';
 
     /* 
@@ -113,6 +113,6 @@ form.addEventListener('submit', function(ev) {
     }).fail(function () {
         // if error, we reload the page, and the error will be in django messages
         location.reload();
-        print('payment failed...')
-    })
+        print('payment failed...');
+    });
 });
