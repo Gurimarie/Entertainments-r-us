@@ -178,7 +178,7 @@ def add_artist_product(request):
             messages.success(request, 'You successfully added a product!')
             return redirect(reverse('add_artist_product'))
         else:
-            messages.error(request, 'Failed to add performance. \
+            messages.error(request, 'Failed to add the product. \
                            Please ensure the form is valid.')
     else:
         form = ProductForm()
@@ -229,10 +229,10 @@ def add_artist(request):
         form = ArtistForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You successfully added a performance!')
+            messages.success(request, 'You successfully added an artist!')
             return redirect(reverse('add_performance'))
         else:
-            messages.error(request, 'Failed to add performance. \
+            messages.error(request, 'Failed to add the artist. \
                            Please ensure the form is valid.')
     else:
         form = ArtistForm()
