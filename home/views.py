@@ -1,4 +1,4 @@
-""" Docstring """
+""" Views for the home-app """
 from django.shortcuts import render
 
 # Create your views here.

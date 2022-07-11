@@ -161,7 +161,7 @@ def artist_product_details(request, pk):
     return render(request, 'artists/artist_product_details.html', context)
 
 
-""" Product Management - ADD """
+# Product Management - ADD
 
 
 @login_required
@@ -245,7 +245,7 @@ def add_artist(request):
     return render(request, template, context)
 
 
-""" Product Management - EDIT """
+# Product Management - EDIT
 
 
 @login_required
@@ -340,7 +340,7 @@ def edit_artist(request, pk):
     return render(request, template, context)
 
 
-""" Product Management - DELETE """
+# Product Management - DELETE
 
 
 @login_required
