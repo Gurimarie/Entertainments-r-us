@@ -230,7 +230,7 @@ def add_artist(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'You successfully added an artist!')
-            return redirect(reverse('add_performance'))
+            return redirect(reverse('add_artist'))
         else:
             messages.error(request, 'Failed to add the artist. \
                            Please ensure the form is valid.')
