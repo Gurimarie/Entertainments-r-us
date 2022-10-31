@@ -1,5 +1,4 @@
-""" Views for shoppingbag-app, from Project Ado, Code Institute... """
-
+""" Views for the shoppingbag-app """
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 

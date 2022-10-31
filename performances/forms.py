@@ -6,6 +6,7 @@ from .models import Product, Artist, Performance
 class ProductForm(forms.ModelForm):
     """ form to get product and artist-names to form for product admin """
     class Meta:
+        """ meta-class """
         model = Product
         fields = '__all__'
 
@@ -19,6 +20,7 @@ class ProductForm(forms.ModelForm):
 class PerformanceForm(forms.ModelForm):
     """ form to get product and artist-names to form for product admin """
     class Meta:
+        """ meta-class """
         model = Performance
         fields = '__all__'
 
@@ -32,6 +34,7 @@ class PerformanceForm(forms.ModelForm):
 class ArtistForm(forms.ModelForm):
     """ form to get product and artist-names to form for product admin """
     class Meta:
+        """ meta-class """
         model = Artist
         fields = '__all__'
 

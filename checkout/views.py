@@ -6,7 +6,6 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 import stripe
-import json
 
 from shoppingbag.contexts import bag_contents
 from performances.models import Product
@@ -29,6 +28,7 @@ def cache_checkout_data(request):
             'username': request.user,
         })
         return HttpResponse(status=200)
+
     except Exception as e:
         messages.error(
             request, ('Sorry, your payment cannot be processed now. \
@@ -57,6 +57,7 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
+
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
@@ -84,12 +85,12 @@ def checkout(request):
                 Please double-check your information.")
 
     else:
-        """ get bag-content (or errormessage if empty) """
+        # get bag-content (or errormessage if empty)
         bag = request.session.get('bag', {})
         if not bag:
             messages.error(
                 request, "There's nothing in your shoppingbag at the moment")
-            return redirect(reverse('performances'))
+            return redirect(reverse('view_shoppingbag'))
 
         current_bag = bag_contents(request)
         total = current_bag['total']

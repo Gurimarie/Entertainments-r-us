@@ -2,12 +2,24 @@ html {
     height: 100%;
 }
 
+.text-black {
+    color: #000 !important;
+}
+
+.text-white {
+    color: rgb(228, 226, 224);
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
 body {
     background: url(https://image.shutterstock.com/image-photo/showman-young-male-entertainer-presenter-260nw-1062295226.jpg) no-repeat top center fixed;
-    background-color: rgb(54, 56, 56);
+    background-color: rgb(228, 224, 222);
     background-size: cover;
     height: calc(100vh - 164px);
-    color: #555;
+    color: black;
     font-family: 'Nunito', sans-serif;
 }
 
@@ -31,6 +43,11 @@ body {
     text-transform: uppercase;
 }
 
+.logo-font-white {
+    text-transform: uppercase;
+    color: rgb(228, 226, 224);
+}
+
 /* The logo will take up no more space than what the text requires */
 .main-logo-link {
     width: fit-content;
@@ -47,6 +64,11 @@ body {
     color: white;
 }
 
+.btn-white {
+    background: white;
+    color: black;
+}
+
 .search-artists-button:hover,
 .search-artists-button:active,
 .search-artists-button:focus,
@@ -57,18 +79,17 @@ body {
     color: white;
 }
 
+.btn-white:hover,
+.btn-white:active,
+.btn-white:focus {
+    background: rgb(206, 205, 205);
+    color: black;
+}
+
 a.artist-type-badge > span.badge:hover,
 a.performance-category-badge > span.badge:hover {
-    background: #222 !important;
-    color: white !important;
-}
-
-.text-black {
-    color: #000 !important;
-}
-
-.border-black {
-    border: 1px solid black !important;
+    background: white !important;
+    color: #222 !important;
 }
 
 
@@ -79,8 +100,9 @@ a.performance-category-badge > span.badge:hover {
     top: 0;
     left: 0;
     position: fixed;
-    background: white;
+    background: rgb(158, 157, 157);
     z-index: -1;
+    color: #000;
 }
 
 
