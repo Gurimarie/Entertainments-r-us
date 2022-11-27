@@ -1,1 +1,0 @@
-web: gunicorn entertainments_r_us.wsgi:application
